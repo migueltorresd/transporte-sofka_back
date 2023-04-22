@@ -8,11 +8,11 @@
     "tsConfigPath": "apps/cuentas/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/cuentas",
+  "root": "apps/cuentas/infrastructure",
   "projects": {
     "cuentas": {
       "type": "application",
-      "root": "apps/cuentas",
+      "root": "apps/cuentas/infrastructure",
       "entryFile": "main",
       "sourceRoot": "apps/cuentas/src",
       "compilerOptions": {
@@ -21,7 +21,7 @@
     },
     "servicios": {
       "type": "application",
-      "root": "apps/servicios",
+      "root": "apps/servicios/infrastructure",
       "entryFile": "main",
       "sourceRoot": "apps/servicios/src",
       "compilerOptions": {
