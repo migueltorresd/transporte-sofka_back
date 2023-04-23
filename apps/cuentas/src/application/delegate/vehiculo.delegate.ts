@@ -15,9 +15,17 @@ import {
   RegistrarVehiculoUseCase,
 } from '../use-case/vehiculo/';
 
+/**
+ * VehiculoDelegate hace una implementacion de la interface IUseCase
+ * Esta implementacion delega la ejecucion de los metodos dados como argumento a la instancia de Delegate.
+ * La función de este delegado es oficiar de mediador entre la capa de insfrastructura y la capa de aplicacion
+ *
+ * @export
+ * @class VehiculoDelegate
+ * @implements {IUseCase}
+ */
 export class VehiculoDelegate implements IUseCase {
   private delegate: IUseCase;
-
 
   /**
    * Creates an instance of VehiculoDelegate.
