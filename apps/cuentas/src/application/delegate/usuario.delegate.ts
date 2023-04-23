@@ -15,10 +15,10 @@ import {
   LoginUsuarioUseCase,
   BuscarUsuariosUseCase,
   BuscarUsuarioPorDniUseCase,
-  BuscarUsuarioPorIdUseCase,
-  BorrarUsuarioUseCase,
+  BuscarUsuarioPorIdUseCase, 
   ActualizarUsuarioUseCase,
   RegistrarUsuarioUseCase,
+  //BorrarUsuarioUseCase,
 } from '../use-case/usuario/';
 
 /**
@@ -77,9 +77,9 @@ export class UsuarioDelegate implements IUseCase {
    *
    * @memberof UsuarioDelegate
    */
-  toBorraUsuario(): void {
+  /* toBorrarUsuario(): void {
     this.delegate = new BorrarUsuarioUseCase(this.usuarioDomainService);
-  }
+  } */
 
   /**
    * Metodo que realiza la ejecucion del caso de uso BuscarUsuarioPorId
