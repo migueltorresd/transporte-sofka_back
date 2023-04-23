@@ -1,11 +1,11 @@
-import { Observable } from "rxjs";
-import { VehiculoDomainEntity } from "../entity/vehiculo-domain.entity";
+// Librerias
+import { Observable } from 'rxjs';
 
-export interface IVehiculoDomainService<Entity extends VehiculoDomainEntity = VehiculoDomainEntity>{
-    registrar(entity: Entity): Observable<Entity>;
-    actualizar(id: string, entity: Entity): Observable<Entity>;
-    borrar(id: string): Observable<Entity>;
-    obtenerPorId(id: string): Observable<Entity>;
-    obtenerPorPlaca(placa: string): Observable<Entity>;
-    obtenerTodos(): Observable<Entity[]>;
+export interface IVehiculoDomainService<T> {
+  registrar(entity: T): Observable<T>;
+  actualizar(id: string, entity: T): Observable<T>;
+  //borrar(id: string): Observable<Entity>;
+  obtenerPorId(id: string): Observable<T>;
+  //obtenerPorPlaca(placa: string): Observable<T>;
+  obtenerTodos(): Observable<T[]>;
 }

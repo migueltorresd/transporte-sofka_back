@@ -1,11 +1,8 @@
 // Librerias
 import { Observable } from 'rxjs';
 
-// Entidades
-import { EnvioDomainEntity } from '../../domain';
-
-// Servicios
-import { IEnvioDomain } from '../../domain/service';
+// Entidades - Entidad
+import { IEnvioDomain, EnvioDomainEntity } from '../../domain';
 
 // Interfaces
 import { IUseCase } from './interface';
@@ -16,7 +13,7 @@ import {
   BuscarEnviosUseCase,
   ActualizarEnvioUseCase,
   RegistrarEnvioUseCase,
-} from '../use-case/envios/';
+} from '../use-case/envio';
 
 /**
  * EnvioDelegate hace una implementacion de la interface IUseCase
@@ -45,14 +42,14 @@ export class EnvioDelegate implements IUseCase {
    *
    * @param {...any[]} args
    * @return {*}
-   * @memberof UsuarioDelegate
+   * @memberof EnvioDelegate
    */
   execute(...args: any[]): Observable<Response> {
     return this.delegate.execute(...args);
   }
 
   /**
-   * Metodo que realiza la ejecucion del caso de uso RegistrarUsuario
+   * Metodo que realiza la ejecucion del caso de uso RegistraEnvio
    *
    * @memberof EnvioDelegate
    */
@@ -61,7 +58,7 @@ export class EnvioDelegate implements IUseCase {
   }
 
   /**
-   * Metodo que realiza la ejecucion del caso de uso ActualizarUsuario
+   * Metodo que realiza la ejecucion del caso de uso ActualizarEnvio
    *
    * @memberof EnvioDelegate
    */

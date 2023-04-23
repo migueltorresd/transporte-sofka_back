@@ -2,10 +2,10 @@
 import { Observable } from 'rxjs';
 
 // Servicios de dominio
-import { IEnvioDomain } from '../../../domain/service/';
+import { IEnvioDomain } from '../../../domain/service';
 
 // Entidades
-import { EnvioDomainEntity } from '../../../domain/entity/';
+import { EnvioDomainEntity } from '../../../domain/entity';
 
 /**
  * Este metodo permite Registrar un nuevo envio y almacenar sus datos en la DB

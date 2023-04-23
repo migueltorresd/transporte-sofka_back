@@ -13,7 +13,7 @@ import { EnvioDomainEntity } from '../../../domain/entity';
  * retorna una copia de la nueva entidad creada
  *
  * @export
- * @class RegistrarEnvioUseCase
+ * @class ActualizarEnvioUseCase
  */
 export class ActualizarEnvioUseCase {
   constructor(
