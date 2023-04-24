@@ -6,7 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
+    "build": "concurrently --kill-others \"npm run build:cuentas\" \"npm run build:servicios\"",
+    "build:cuentas": "npx cross-env NODE_ENV=dev nest build cuentas",
+    "build:servicios": "npx cross-env NODE_ENV=dev nest build cuentas",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "concurrently --kill-others \"npm run start:cuentas:prod\" \"npm run start:servicios:prod\"",
     "start:dev": "concurrently --kill-others \"npm run start:cuentas:dev\" \"npm run start:servicios:dev\"",
