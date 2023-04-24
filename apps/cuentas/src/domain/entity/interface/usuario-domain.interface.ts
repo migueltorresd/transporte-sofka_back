@@ -7,5 +7,5 @@ export interface IUsuarioDomain {
   dni?: string;
   correo: string;
   telefono?: string;
-  esConductor: boolean;
+  rol: number;
 }
