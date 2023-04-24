@@ -13,7 +13,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
   dni?: string;
   correo: string;
   telefono?: string;
-  esConductor: boolean;
+  rol: number;
 
   constructor(data: IUsuarioDomain) {
     if (data.id) this.id = data.id;
@@ -33,7 +33,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
 
     if (data.telefono) this.telefono = data.telefono;
 
-    if (data.esConductor) this.esConductor = data.esConductor;
-    else this.esConductor = false;
+    if (data.rol) this.rol = data.rol;
+    else this.rol = data.rol;
   }
 }

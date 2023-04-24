@@ -1,4 +1,3 @@
 export interface IUseCase {
-    execute(...args: any[]): any;
-  }
-  
+  execute(...args: any[]): any;
+}
