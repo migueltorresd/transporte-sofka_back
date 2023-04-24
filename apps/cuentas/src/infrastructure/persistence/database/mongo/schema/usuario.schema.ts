@@ -31,7 +31,7 @@ export class UsuarioSchema extends UsuarioDomainEntity{
     telefono: string;
 
     @Prop({ required: true})
-    esConductor: boolean;
+    rol: number;
 }
 
 const schema = SchemaFactory.createForClass(UsuarioSchema);
