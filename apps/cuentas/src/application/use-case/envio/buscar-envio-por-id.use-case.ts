@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs';
 
 // Servicios de dominio
-import { IEnvioDomain } from '../../../domain/service';
+import { IEnvioDomainService } from '../../../domain/service';
 
 // Entidades
 import { EnvioDomainEntity } from '../../../domain/entity';
@@ -18,11 +18,11 @@ import { EnvioDomainEntity } from '../../../domain/entity';
  */
 export class BuscarEnvioPorIdUseCase {
   constructor(
-    private readonly envioDomainService: IEnvioDomain<EnvioDomainEntity>,
+    private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
   ) {}
 
-  execute(): Observable<EnvioDomainEntity[]> {
+  execute(id: string): Observable<EnvioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.envioDomainService.obtenerPorId(id);
   }
 }

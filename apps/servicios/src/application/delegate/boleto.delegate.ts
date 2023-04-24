@@ -22,7 +22,6 @@ import { ActualizarBoletoUseCase, RegistrarBoletoUseCase } from '../use-case';
 export class BoletoDelegate implements IUseCase {
   private delegate: IUseCase;
 
-
   /**
    * Creates an instance of BoletoDelegate.
    * @param {IBoletoDomainService<BoletoDomainEntity>} boletoDomainService

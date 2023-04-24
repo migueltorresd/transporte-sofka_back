@@ -15,7 +15,7 @@ import {
   LoginUsuarioUseCase,
   BuscarUsuariosUseCase,
   BuscarUsuarioPorDniUseCase,
-  BuscarUsuarioPorIdUseCase, 
+  BuscarUsuarioPorIdUseCase,
   ActualizarUsuarioUseCase,
   RegistrarUsuarioUseCase,
   //BorrarUsuarioUseCase,

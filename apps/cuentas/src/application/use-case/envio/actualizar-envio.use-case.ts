@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs';
 
 // Servicios de dominio
-import { IEnvioDomain } from '../../../domain/service';
+import { IEnvioDomainService } from '../../../domain/service';
 
 // Entidades
 import { EnvioDomainEntity } from '../../../domain/entity';
@@ -17,11 +17,11 @@ import { EnvioDomainEntity } from '../../../domain/entity';
  */
 export class ActualizarEnvioUseCase {
   constructor(
-    private readonly envioDomainService: IEnvioDomain<EnvioDomainEntity>,
+    private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
   ) {}
 
   execute(envioData: EnvioDomainEntity): Observable<EnvioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.envioDomainService.actualizar(envioData.id, envioData);
   }
 }
