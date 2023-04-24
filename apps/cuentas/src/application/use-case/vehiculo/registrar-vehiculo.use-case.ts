@@ -24,6 +24,6 @@ export class RegistrarVehiculoUseCase {
     vehiculoData: VehiculoDomainEntity,
   ): Observable<VehiculoDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.vehiculoDomainService.crear(vehiculoData);
   }
 }

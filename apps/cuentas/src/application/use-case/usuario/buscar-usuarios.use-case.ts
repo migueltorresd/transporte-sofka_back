@@ -20,8 +20,8 @@ export class BuscarUsuariosUseCase {
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(usuarioId: string): Observable<UsuarioDomainEntity[]> {
+  execute(): Observable<UsuarioDomainEntity[]> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.usuarioDomainService.obtenerTodos();
   }
 }

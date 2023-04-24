@@ -22,6 +22,6 @@ export class BuscarEnviosUseCase {
 
   execute(): Observable<EnvioDomainEntity[]> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.envioDomainService.obtenerTodos();
   }
 }

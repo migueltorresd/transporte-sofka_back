@@ -21,8 +21,8 @@ export class LoginUsuarioUseCase {
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(correo: string, password: string): Observable<UsuarioDomainEntity> {
+  execute(correo: string, contraseña: string): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.usuarioDomainService.loginUsuario(correo, contraseña);
   }
 }

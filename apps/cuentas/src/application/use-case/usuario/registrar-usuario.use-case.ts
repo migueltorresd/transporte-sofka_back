@@ -22,6 +22,6 @@ export class RegistrarUsuarioUseCase {
 
   execute(usuarioData: UsuarioDomainEntity): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.usuarioDomainService.crear(usuarioData);
   }
 }

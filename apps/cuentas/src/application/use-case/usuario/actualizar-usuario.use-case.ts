@@ -26,6 +26,6 @@ export class ActualizarUsuarioUseCase {
     usuarioData: UsuarioDomainEntity,
   ): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.usuarioDomainService.actualizar(usuarioId, usuarioData);
   }
 }

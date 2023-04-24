@@ -25,6 +25,6 @@ export class ActualizarBoletoUseCase {
     boletoData: BoletoDomainEntity,
   ): Observable<BoletoDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.boletoDomainService.actualizar(boletoId, boletoData);
   }
 }

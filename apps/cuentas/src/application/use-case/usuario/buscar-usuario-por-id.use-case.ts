@@ -21,8 +21,8 @@ export class BuscarUsuarioPorIdUseCase {
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(): Observable<UsuarioDomainEntity[]> {
+  execute(id: string): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.usuarioDomainService.obtenerPorId(id);
   }
 }

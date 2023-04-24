@@ -21,8 +21,8 @@ export class BuscarEnvioPorIdUseCase {
     private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
   ) {}
 
-  execute(): Observable<EnvioDomainEntity[]> {
+  execute(id: string): Observable<EnvioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.envioDomainService.obtenerPorId(id);
   }
 }

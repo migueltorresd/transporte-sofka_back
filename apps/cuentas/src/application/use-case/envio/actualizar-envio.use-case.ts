@@ -22,6 +22,6 @@ export class ActualizarEnvioUseCase {
 
   execute(envioData: EnvioDomainEntity): Observable<EnvioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.envioDomainService.actualizar(envioData.id, envioData);
   }
 }

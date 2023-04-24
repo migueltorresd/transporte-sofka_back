@@ -23,6 +23,6 @@ export class BuscarUsuarioPorDniUseCase {
 
   execute(usuarioId: string): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.usuarioDomainService.obtenerPorDni(usuarioId);
   }
 }
