@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "concurrently --kill-others \"npm run build:cuentas\" \"npm run build:servicios\"",
+    "build": "nest build",
     "build:cuentas": "npx cross-env NODE_ENV=dev nest build cuentas",
     "build:servicios": "npx cross-env NODE_ENV=dev nest build cuentas",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
