@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { UsuarioDomainEntity } from 'apps/cuentas/src/domain';
+import { UsuarioDomainEntity } from '../../../../../domain/entity';
 import { SchemaTypes } from 'mongoose';
 
 @Schema({ collection: 'Usuarios', versionKey: false, strict: false })

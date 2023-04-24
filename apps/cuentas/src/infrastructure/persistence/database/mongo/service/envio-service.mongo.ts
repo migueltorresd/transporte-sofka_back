@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IEnvioDomainService } from 'apps/cuentas/src/domain';
+import { IEnvioDomainService } from '../../../../../domain/service';
 import { Observable } from 'rxjs';
 import { EnvioRepositoryMongo } from '../repository';
 import { EnvioEntityMongo } from '../schema';

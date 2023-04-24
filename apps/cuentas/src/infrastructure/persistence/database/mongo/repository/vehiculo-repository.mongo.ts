@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { VehiculoEntityMongo } from '../schema/vehiculo.schema';
 import { IBase } from './interface/base.interface';
 import { Observable, from, map } from 'rxjs';
-import { VehiculoDomainEntity } from 'apps/cuentas/src/domain';
+import { VehiculoDomainEntity } from '../../../../../domain/entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { DeleteResult } from 'mongodb';

@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { EnvioDomainEntity } from 'apps/cuentas/src/domain';
+import { EnvioDomainEntity } from '../../../../../domain/entity';
 import { SchemaTypes } from 'mongoose';
 
 @Schema({ collection: 'Envios', versionKey: false, strict: false })

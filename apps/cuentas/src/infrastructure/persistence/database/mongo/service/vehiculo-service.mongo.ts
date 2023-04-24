@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IVehiculoDomainService } from 'apps/cuentas/src/domain';
+import { IVehiculoDomainService } from '../../../../../domain/service';
 import { Observable } from 'rxjs';
 import { VehiculoRepositoryMongo } from '../repository';
 import { VehiculoEntityMongo } from '../schema';
