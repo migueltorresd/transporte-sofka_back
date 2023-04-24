@@ -1,9 +1,9 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
-export interface IBase<Model>{
-crear(model:Model): Observable<Model>
-actualizar(model:Model): Observable<Model>
-borrar(id:string): Observable<Model>
-obtenerPorId(id:string): Observable<Model>
-obtenerTodos(): Observable<Model[]>
+export interface IBase<Model> {
+  crear(modelo: Model): Observable<Model>;
+  actualizar(id: string, modelo: Model): Observable<Model>;
+  borrar(id: string): Observable<boolean>;
+  obtenerPorId(id: string): Observable<Model>;
+  obtenerTodos(): Observable<Model[]>;
 }

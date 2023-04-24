@@ -1,0 +1,53 @@
+{
+  // Use IntelliSense para saber los atributos posibles.
+  // Mantenga el puntero para ver las descripciones de los existentes atributos.
+  // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Run all apis",
+      "configurations": ["Run cuentas api", "Run servicios api"],
+      "stopAll": true,
+      "presentation": {
+        "hidden": false,
+        "group": "all",
+        "order": 1
+      }
+    }
+  ],
+  "configurations": [
+    {
+      "command": "npm run start:cuentas:debug",
+      "name": "Run cuentas api",
+      "request": "launch",
+      "type": "node-terminal",
+      "presentation": {
+        "hidden": false,
+        "group": "scripts",
+        "order": 2
+      }
+    },
+    {
+      "command": "npm run start:servicios:debug",
+      "name": "Run servicios api",
+      "request": "launch",
+      "type": "node-terminal",
+      "presentation": {
+        "hidden": false,
+        "group": "scripts",
+        "order": 3
+      }
+    },
+    {
+      "command": "npm run doc",
+      "name": "Documentation",
+      "request": "launch",
+      "type": "node-terminal",
+      "presentation": {
+        "hidden": false,
+        "group": "",
+        "order": 4
+      }
+    }
+  ]
+}

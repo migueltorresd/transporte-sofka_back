@@ -7,7 +7,6 @@ import { IUsuarioDomainService } from '../../../domain/service/';
 // Entidades
 import { UsuarioDomainEntity } from '../../../domain/entity/';
 
-
 /**
  * Este metodo permite realizar la busqueda de un usuario mediante ID unico
  * Recibe como parametro un dato tipo string con id de usuario

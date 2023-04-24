@@ -7,7 +7,6 @@ import { IUsuarioDomainService } from '../../../domain/service/';
 // Entidades
 import { UsuarioDomainEntity } from '../../../domain/entity/';
 
-
 /**
  * Este metodo permite realizar la busqueda de un usuario mediante su correo electronico
  * Recibe como parametro un dato tipo string con la direccion de correo
