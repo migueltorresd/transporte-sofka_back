@@ -1,21 +1,34 @@
+// Librerias
+import { Types } from 'mongoose';
+
+// Interfaces
 import { IBoletoDomain } from '../interface/boleto-domain.interface';
 
 export class BoletoDomainEntity implements IBoletoDomain {
-  id: string;
+  id?: string;
   envioId: string;
   usuarioId: string;
   conductorId: string;
   vehiculoId: string;
-  fecha: number;
-  completado: boolean;
+  fecha?: Date;
+  completado?: boolean;
 
   constructor(data: IBoletoDomain) {
-    this.id = data.id;
-    this.envioId = data.envioId;
-    this.usuarioId = data.usuarioId;
-    this.conductorId = data.conductorId;
-    this.vehiculoId = data.vehiculoId;
-    this.fecha = data.fecha;
-    this.completado = data.completado;
+    if (data.id) this.id = data.id;
+    else this.id = new Types.ObjectId().toString();
+
+    if (data.envioId) this.envioId = data.envioId;
+
+    if (data.usuarioId) this.usuarioId = data.usuarioId;
+
+    if (data.conductorId) this.conductorId = data.conductorId;
+
+    if (data.vehiculoId) this.vehiculoId = data.vehiculoId;
+
+    if (data.fecha) this.fecha = data.fecha;
+    else this.fecha = new Date();
+
+    if (data.completado) this.completado = data.completado;
+    else this.completado = false;
   }
 }

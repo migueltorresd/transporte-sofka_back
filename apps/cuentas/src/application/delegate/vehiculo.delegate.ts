@@ -13,6 +13,7 @@ import {
   BuscarVehiculoPorIdUseCase,
   ActualizarVehiculoUseCase,
   RegistrarVehiculoUseCase,
+  BuscarVehiculosPorCapacidadUseCase,
 } from '../use-case/vehiculo/';
 
 /**
@@ -34,7 +35,7 @@ export class VehiculoDelegate implements IUseCase {
    */
   constructor(
     private readonly vehiculoDomainService: IVehiculoDomainService<VehiculoDomainEntity>,
-  ){}
+  ) {}
 
   /**
    * El metodo execute, acepta un numero arbitrario de argumentos los cuales ejecuta
@@ -82,5 +83,16 @@ export class VehiculoDelegate implements IUseCase {
    */
   toBuscarVehiculos(): void {
     this.delegate = new BuscarVehiculosUseCase(this.vehiculoDomainService);
+  }
+
+  /**
+   * Metodo que realiza la ejecucion del caso de uso BuscarVehiculosPorCapacidad
+   *
+   * @memberof VehiculoDelegate
+   */
+  toBuscarVehiculosPorCapacidad(): void {
+    this.delegate = new BuscarVehiculosPorCapacidadUseCase(
+      this.vehiculoDomainService,
+    );
   }
 }
