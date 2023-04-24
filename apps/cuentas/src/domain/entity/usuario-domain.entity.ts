@@ -3,6 +3,7 @@ import { Types } from 'mongoose';
 
 // Interfaces
 import { IUsuarioDomain } from './interface/usuario-domain.interface';
+import { RolTypes } from './interface/enums';
 
 export class UsuarioDomainEntity implements IUsuarioDomain {
   id?: string;
@@ -34,6 +35,6 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
     if (data.telefono) this.telefono = data.telefono;
 
     if (data.rol) this.rol = data.rol;
-    else this.rol = data.rol;
+    else this.rol = RolTypes.USUARIO;
   }
 }

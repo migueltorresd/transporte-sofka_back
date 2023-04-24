@@ -7,8 +7,6 @@ import { IUsuarioDomainService } from '../../../domain/service';
 // Entidades
 import { UsuarioDomainEntity } from '../../../domain/entity';
 
-
-
 /**
  * Este metodo permite al usuario que presente las credenciales correctas, acceder a su cuenta en la aplicacion
  * recibe como parametros de entrada un valor de tipo string con el correo electronico y otro valor tipo string con la contraseña
@@ -23,8 +21,8 @@ export class LoginUsuarioUseCase {
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(correo: string, password: string ): Observable<UsuarioDomainEntity> {
+  execute(correo: string, contraseña: string): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.usuarioDomainService.loginUsuario(correo, contraseña);
   }
 }

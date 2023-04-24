@@ -22,6 +22,6 @@ export class BuscarVehiculosUseCase {
 
   execute(): Observable<VehiculoDomainEntity[]> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.vehiculosDomainService.obtenerTodos();
   }
 }

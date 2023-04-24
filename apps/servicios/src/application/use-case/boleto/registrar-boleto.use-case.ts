@@ -21,6 +21,6 @@ export class RegistrarBoletoUseCase {
 
   execute(vehiculoData: BoletoDomainEntity): Observable<BoletoDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.boletoDomainService.crear(vehiculoData);
   }
 }
