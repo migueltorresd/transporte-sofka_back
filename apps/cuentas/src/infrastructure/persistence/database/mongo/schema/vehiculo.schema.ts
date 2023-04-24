@@ -1,3 +1,7 @@
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { VehiculoDomainEntity } from "apps/cuentas/src/domain";
+import { SchemaTypes } from "mongoose";
+
 @Schema({ collection: 'vehiculos',versionKey: false, strict: false })
 export class VehiculoSchema extends VehiculoDomainEntity{
     @Prop({type: SchemaTypes.ObjectId,
@@ -28,3 +32,4 @@ export class VehiculoSchema extends VehiculoDomainEntity{
     @Prop({ required: true})
     disponible: boolean;
 }
+const schema = SchemaFactory.createForClass(VehiculoSchema);

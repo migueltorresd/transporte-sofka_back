@@ -1,4 +1,4 @@
-import { Prop, Schema } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { UsuarioDomainEntity } from "apps/cuentas/src/domain";
 import { SchemaTypes } from "mongoose";
 import { version } from "os";
@@ -33,3 +33,5 @@ export class UsuarioSchema extends UsuarioDomainEntity{
     @Prop({ required: true})
     esConductor: boolean;
 }
+
+const schema = SchemaFactory.createForClass(UsuarioSchema);
