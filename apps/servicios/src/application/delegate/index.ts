@@ -1,1 +1,2 @@
-export * from './___test___';
+export * from './boleto.delegate';
+export * from './interface';

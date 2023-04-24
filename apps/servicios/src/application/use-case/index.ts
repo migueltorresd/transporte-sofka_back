@@ -1,1 +1,1 @@
-export * from './___test___';
+export * from './boleto';

@@ -1,13 +1,12 @@
-import { Observable } from "rxjs";
-import { UsuarioDomainEntity } from "../entity/usuario-domain.entity";
+import { Observable } from 'rxjs';
 
-export interface IUsuarioDomainService <Entity extends UsuarioDomainEntity = UsuarioDomainEntity>{
-    registrar(entity: Entity): Observable<Entity>;
-    actualizar(id: string, entity: Entity): Observable<Entity>;
-    borrar(id: string): Observable<Entity>;
-    obtenerPorCorreo(correo: string): Observable<Entity>;
-    obtenerPorId(id: string): Observable<Entity>;
-    obtenerPorDni(dni: string): Observable<Entity>;
-    obtenerTodos(): Observable<Entity[]>;
-    loginUsuario(correo: string, contraseña: string): Observable<Entity>; 
+export interface IUsuarioDomainService<T> {
+  registrar(entity: T): Observable<T>;
+  actualizar(id: string, entity: T): Observable<T>;
+  //borrar(id: string): Observable<T>;
+  obtenerPorCorreo(correo: string): Observable<T>;
+  obtenerPorId(id: string): Observable<T>;
+  obtenerPorDni(dni: string): Observable<T>;
+  obtenerTodos(): Observable<T[]>;
+  loginUsuario(correo: string, password: string): Observable<T>;
 }
