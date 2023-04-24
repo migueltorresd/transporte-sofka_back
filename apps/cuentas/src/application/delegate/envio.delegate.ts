@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs';
 
 // Entidades - Entidad
-import { IEnvioDomain, EnvioDomainEntity } from '../../domain';
+import { EnvioDomainEntity, IEnvioDomainService } from '../../domain';
 
 // Interfaces
 import { IUseCase } from './interface';
@@ -29,11 +29,11 @@ export class EnvioDelegate implements IUseCase {
 
   /**
    * Creates an instance of EnvioDelegate.
-   * @param {IEnvioDomain<EnvioDomainEntity>} envioDomainService
+   * @param {IEnvioDomainService<EnvioDomainEntity>} envioDomainService
    * @memberof EnvioDelegate
    */
   constructor(
-    private readonly envioDomainService: IEnvioDomain<EnvioDomainEntity>,
+    private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
   ) {}
 
   /**

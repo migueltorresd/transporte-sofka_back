@@ -7,7 +7,6 @@ import { IUsuarioDomainService } from '../../../domain/service/';
 // Entidades
 import { UsuarioDomainEntity } from '../../../domain/entity/';
 
-
 /**
  * Este metodo permite realizar la busqueda de un usuario mediante su correo electronico
  * Recibe como parametro un dato tipo string con la direccion de correo
@@ -24,6 +23,6 @@ export class BuscarUsuarioPorCorreoCase {
 
   execute(usuarioId: string): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.usuarioDomainService.obtenerPorCorreo(usuarioId);
   }
 }
