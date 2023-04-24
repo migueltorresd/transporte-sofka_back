@@ -9,6 +9,7 @@
   },
   "monorepo": true,
   "root": "apps/cuentas",
+  "entryFile": "infrastructure/main",
   "projects": {
     "cuentas": {
       "type": "application",
