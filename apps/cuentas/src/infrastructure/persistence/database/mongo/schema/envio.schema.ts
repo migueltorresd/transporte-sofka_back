@@ -7,11 +7,11 @@ export class EnvioEntityMongo extends EnvioDomainEntity {
   @Prop({ type: SchemaTypes.ObjectId, auto: true })
   id: string;
 
-  @Prop({ required: false })
-  fecha: Date;
-
   @Prop({ required: true })
   usuarioId: string;
+
+  @Prop({ required: false })
+  fecha: number;
 
   @Prop({ required: true })
   origen: string;

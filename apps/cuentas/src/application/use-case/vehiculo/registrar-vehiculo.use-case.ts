@@ -7,6 +7,9 @@ import { IVehiculoDomainService } from '../../../domain/service';
 // Entidades
 import { VehiculoDomainEntity } from '../../../domain/entity';
 
+// DTO's
+import { VehiculoDto } from '../../../domain/dto';
+
 /**
  * Este metodo permite Registrar un nuevo vehiculo y almacenar sus datos en la DB
  * Recibe un conjunto de datos de Vehiculo como parametros de entrada
@@ -20,9 +23,7 @@ export class RegistrarVehiculoUseCase {
     private readonly vehiculoDomainService: IVehiculoDomainService<VehiculoDomainEntity>,
   ) {}
 
-  execute(
-    vehiculoData: VehiculoDomainEntity,
-  ): Observable<VehiculoDomainEntity> {
+  execute(vehiculoData: VehiculoDto): Observable<VehiculoDomainEntity> {
     //TODO: terminar de implementar caso de uso
     return this.vehiculoDomainService.crear(vehiculoData);
   }
