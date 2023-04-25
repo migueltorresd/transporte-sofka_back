@@ -1,10 +1,12 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { VehiculoDelegate } from '../../application/delegate/vehiculo.delegate';
+import { VehiculoDelegate } from '../../application/delegate';
 import { VehiculoService } from '../service';
 import { Observable } from 'rxjs';
-import { VehiculoDto } from '../dto/vehiculo.dto';
+import { VehiculoDto } from '../dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('vehiculo')
+@ApiTags('vehiculo')
+@Controller('api/vehiculo')
 export class VehiculoController {
   private readonly useCase: VehiculoDelegate;
 
@@ -18,7 +20,7 @@ export class VehiculoController {
     return this.useCase.execute(vehiculo);
   }
 
-  @Put(':id')
+  @Put('actualizar-vehiculo')
   actualizarVehiculo(
     @Param('id') id: string,
     @Body() vehiculoActualizar: Partial<VehiculoDto>,
@@ -27,19 +29,19 @@ export class VehiculoController {
     return this.useCase.execute(id, vehiculoActualizar);
   }
 
-  @Get(':id')
+  @Get('obtener-por-id')
   obtenerPorId(@Param('id') id: string): Observable<Response> {
     this.useCase.toBuscarVehiculoPorId();
     return this.useCase.execute(id);
   }
 
-  @Get()
+  @Get('obtener-todos')
   obtenerTodos(): Observable<Response> {
     this.useCase.toBuscarVehiculos();
     return this.useCase.execute();
   }
 
-  @Get()
+  @Get('obtener-por-capacidad')
   obtenerPorCapacidad(
     @Param('capacidad') capacidad: string,
   ): Observable<Response> {

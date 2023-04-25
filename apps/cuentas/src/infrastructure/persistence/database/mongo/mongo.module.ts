@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './config';
-import { SchemasMongo } from './schema';
-import { UsuarioServiceMongo } from './service';
-import { UsuarioRepositoryMongo } from './repository';
+import { SchemasMongo, SchemasNamesMongo } from './schema';
+import { RepositoriesMongo } from './repository';
+import { ServicesMongo } from './service';
 
 @Module({
   imports: [
@@ -11,17 +11,13 @@ import { UsuarioRepositoryMongo } from './repository';
       useClass: MongooseConfigService,
     }),
     MongooseModule.forFeature([
-      { name: 'Envio', schema: SchemasMongo[0] },
-      { name: 'Usuario', schema: SchemasMongo[1] },
-      { name: 'Vehiculo', schema: SchemasMongo[2] },
+      { name: SchemasNamesMongo[0].name, schema: SchemasMongo[0] },
+      { name: SchemasNamesMongo[1].name, schema: SchemasMongo[1] },
+      { name: SchemasNamesMongo[2].name, schema: SchemasMongo[2] },
     ]),
   ],
   controllers: [],
-  providers: [
-    MongooseConfigService,
-    UsuarioServiceMongo,
-    UsuarioRepositoryMongo,
-  ],
-  exports: [UsuarioServiceMongo, UsuarioRepositoryMongo],
+  providers: [...RepositoriesMongo, ...ServicesMongo],
+  exports: [...RepositoriesMongo, ...ServicesMongo],
 })
 export class MongoModule {}
