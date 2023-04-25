@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { IUsuarioDomainService } from '../../../../../domain/service';
-import { Observable, from } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
 import { UsuarioRepositoryMongo } from '../repository';
 import { UsuarioEntityMongo } from '../schema';
 import { JwtService } from '@nestjs/jwt';
@@ -42,8 +42,10 @@ export class UsuarioServiceMongo
   }
 
   loginUsuario(correo: string, contraseña: string): Observable<string> {
-    return from(
-      this.jwtService.sign(this.repository.loginUsuario(correo, contraseña)),
+    return from(this.repository.loginUsuario(correo, contraseña)).pipe(
+      map((usuario: UsuarioEntityMongo) => {
+        return this.jwtService.sign({ data: usuario });
+      }),
     );
   }
 }

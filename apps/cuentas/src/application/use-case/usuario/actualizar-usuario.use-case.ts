@@ -29,10 +29,10 @@ export class ActualizarUsuarioUseCase {
     usuarioData: UsuarioDto,
   ): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-  const dto = {
+    const dto = {
       ...usuarioData,
       apellidos: usuarioData.nombres.split(' ')[1],
-      nombres: usuarioData.nombres.split(' ')[0]
+      nombres: usuarioData.nombres.split(' ')[0],
     } as IUsuarioDomain;
     return this.usuarioDomainService.actualizar(id, dto);
   }
