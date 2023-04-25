@@ -13,14 +13,14 @@ export class UsuarioController {
     this.useCase = new UsuarioDelegate(usuarioService);
   }
 
-  @Post('crear')
+  @Post('registrar')
   registrarUsuario(@Body() usuario: UsuarioDto): Observable<Response> {
     this.useCase.toRegistrarUsuario();
     return this.useCase.execute(usuario);
   }
 
   @Put(':id')
-  actualizar(
+  actualizarUsuario(
     @Param('id') id: string,
     @Body() usuarioActualizar: Partial<UsuarioDto>,
   ): Observable<Response> {
@@ -38,5 +38,23 @@ export class UsuarioController {
   obtenerPorId(@Param('id') id: string): Observable<Response> {
     this.useCase.toBuscarUsuarioPorId();
     return this.useCase.execute(id);
+  }
+
+  @Get()
+  obtenerPorCorreo(@Param('correo') correo: string): Observable<Response> {
+    this.useCase.toBuscarUsuarioPorCorreo();
+    return this.useCase.execute(correo);
+  }
+
+  @Get()
+  obtenerTodos(): Observable<Response> {
+    this.useCase.toBuscarTodos();
+    return this.useCase.execute();
+  }
+
+  @Post('login')
+  loginUsuario(@Body() credenciales: UsuarioDto): Observable<Response> {
+    this.useCase.toLoginUsuario();
+    return this.useCase.execute(credenciales.correo, credenciales.password);
   }
 }
