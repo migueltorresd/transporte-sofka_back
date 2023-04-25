@@ -15,13 +15,13 @@ export class UsuarioEntityMongo extends UsuarioDomainEntity {
   @Prop({ required: true })
   apellidos: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   dni: string;
 
   @Prop({ required: true })
   correo: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   telefono: string;
 
   @Prop({ required: true })
