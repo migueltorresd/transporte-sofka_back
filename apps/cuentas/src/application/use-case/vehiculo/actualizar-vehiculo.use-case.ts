@@ -7,6 +7,9 @@ import { IVehiculoDomainService } from '../../../domain/service';
 // Entidades
 import { VehiculoDomainEntity } from '../../../domain/entity';
 
+// DTO's
+import { VehiculoDto } from '../../../domain/dto';
+
 /**
  * Este metodo permite Actualizar la informacion de un Vehiculo
  * Recibe un conjunto de datos de Vehiculo como parametros de entrada
@@ -21,9 +24,10 @@ export class ActualizarVehiculoUseCase {
   ) {}
 
   execute(
-    vehiculoData: VehiculoDomainEntity,
+    id: string,
+    vehiculoData: VehiculoDto,
   ): Observable<VehiculoDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return this.vehiculoDomainService.actualizar(vehiculoData.id, vehiculoData);
+    return this.vehiculoDomainService.actualizar(id, vehiculoData);
   }
 }

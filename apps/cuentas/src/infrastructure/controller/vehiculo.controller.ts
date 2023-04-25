@@ -23,10 +23,10 @@ export class VehiculoController {
   @Put('actualizar-vehiculo')
   actualizarVehiculo(
     @Query('id') id: string,
-    @Body() vehiculoActualizar: Partial<VehiculoDto>,
+    @Body() vehiculo: Partial<VehiculoDto>,
   ): Observable<Response> {
     this.useCase.toActualizarVehiculo();
-    return this.useCase.execute(id, vehiculoActualizar);
+    return this.useCase.execute(id, vehiculo);
   }
 
   @Get('obtener-por-id')

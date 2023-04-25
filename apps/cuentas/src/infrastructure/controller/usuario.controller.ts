@@ -2,7 +2,7 @@ import { Body, Controller, Get, Query, Post, Put } from '@nestjs/common';
 import { UsuarioDelegate } from '../../application/delegate';
 import { UsuarioService } from '../service';
 import { Observable } from 'rxjs';
-import { UsuarioDto } from '../dto';
+import { CredencialesDto, UsuarioDto } from '../dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('usuario')
@@ -23,10 +23,10 @@ export class UsuarioController {
   @Put('actualizar-usuario')
   actualizarUsuario(
     @Query('id') id: string,
-    @Body() usuarioActualizar: Partial<UsuarioDto>,
+    @Body() usuario: Partial<UsuarioDto>,
   ): Observable<Response> {
     this.useCase.toActualizarUsuario();
-    return this.useCase.execute(id, usuarioActualizar);
+    return this.useCase.execute(id, usuario);
   }
 
   @Get('obtener-por-dni')
@@ -54,8 +54,8 @@ export class UsuarioController {
   }
 
   @Post('login')
-  loginUsuario(@Body() credenciales: UsuarioDto): Observable<Response> {
+  loginUsuario(@Body() credenciales: CredencialesDto): Observable<Response> {
     this.useCase.toLoginUsuario();
-    return this.useCase.execute(credenciales.email, credenciales.password);
+    return this.useCase.execute(credenciales.correo, credenciales.password);
   }
 }
