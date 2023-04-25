@@ -63,7 +63,7 @@ export class VehiculoDelegate implements IUseCase {
    *
    * @memberof VehiculoDelegate
    */
-  toActualizarEnvio(): void {
+  toActualizarVehiculo(): void {
     this.delegate = new ActualizarVehiculoUseCase(this.vehiculoDomainService);
   }
 

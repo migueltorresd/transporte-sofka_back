@@ -56,7 +56,7 @@ export class BoletoDelegate implements IUseCase {
    *
    * @memberof VehiculoDelegate
    */
-  toActualizarEnvio(): void {
+  toActualizarBoleto(): void {
     this.delegate = new ActualizarBoletoUseCase(this.boletoDomainService);
   }
 }
