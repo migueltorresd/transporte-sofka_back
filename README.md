@@ -1,5 +1,4 @@
 # Transporte SOFKA
-
 ## Modelo de Negocio
 
 <hr>
@@ -58,7 +57,7 @@ git clone https://github.com/migueltorresd/transporte-sofka_back
 npm install
 ```
 
-# Frontend 
+# Frontend 🖥️
 
 1. Clonar el repositorio:
 ```
@@ -74,9 +73,9 @@ npm install
 
 El Proyecto fue desarrollado usando.
 
-    - Backend: NestJs.
-    - Frontend: Angular.
-    - Bases de datos: MongoDB.
+    - Backend: NestJs. ⚔️
+    - Frontend: Angular. 🖥️
+    - Bases de datos: MongoDB. 💾
 
 ------------------------------------------------------------------------------------------------------------------------
 # Modelo UML
