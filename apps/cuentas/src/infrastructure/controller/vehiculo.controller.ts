@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Query, Post, Put } from '@nestjs/common';
 import { VehiculoDelegate } from '../../application/delegate';
 import { VehiculoService } from '../service';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class VehiculoController {
 
   @Put('actualizar-vehiculo')
   actualizarVehiculo(
-    @Param('id') id: string,
+    @Query('id') id: string,
     @Body() vehiculoActualizar: Partial<VehiculoDto>,
   ): Observable<Response> {
     this.useCase.toActualizarVehiculo();
@@ -30,7 +30,7 @@ export class VehiculoController {
   }
 
   @Get('obtener-por-id')
-  obtenerPorId(@Param('id') id: string): Observable<Response> {
+  obtenerPorId(@Query('id') id: string): Observable<Response> {
     this.useCase.toBuscarVehiculoPorId();
     return this.useCase.execute(id);
   }
@@ -43,7 +43,7 @@ export class VehiculoController {
 
   @Get('obtener-por-capacidad')
   obtenerPorCapacidad(
-    @Param('capacidad') capacidad: string,
+    @Query('capacidad') capacidad: string,
   ): Observable<Response> {
     this.useCase.toBuscarVehiculosPorCapacidad();
     return this.useCase.execute(capacidad);
