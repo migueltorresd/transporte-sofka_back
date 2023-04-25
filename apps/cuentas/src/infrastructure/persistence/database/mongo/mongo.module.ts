@@ -8,7 +8,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
-    JwtModule.register({ secret: process.env.SECRET_KEY }),
+    JwtModule.register({ secret: process.env.SECRET_KEY || 'secretKey' }),
     MongooseModule.forRootAsync({
       useClass: MongooseConfigService,
     }),

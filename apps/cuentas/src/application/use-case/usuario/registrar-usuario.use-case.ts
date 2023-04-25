@@ -28,7 +28,7 @@ export class RegistrarUsuarioUseCase {
     const dto = {
       ...usuarioData,
       apellidos: usuarioData.nombres.split(' ')[1],
-      nombres: usuarioData.nombres.split(' ')[0]
+      nombres: usuarioData.nombres.split(' ')[0],
     } as IUsuarioDomain;
     return this.usuarioDomainService.crear(new UsuarioDomainEntity(dto));
   }

@@ -8,7 +8,7 @@ import { RolTypes } from './interface/enums';
 export class UsuarioDomainEntity implements IUsuarioDomain {
   id?: string;
   nombreUsuario?: string;
-  password: string;
+  contraseña: string;
   nombres: string;
   apellidos: string;
   dni: string;
@@ -22,7 +22,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
 
     if (data.nombreUsuario) this.nombreUsuario = data.nombreUsuario;
 
-    if (data.password) this.password = data.password;
+    if (data.contraseña) this.contraseña = data.contraseña;
 
     if (data.nombres) this.nombres = data.nombres;
 
