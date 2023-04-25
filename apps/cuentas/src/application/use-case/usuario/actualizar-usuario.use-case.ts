@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { IUsuarioDomainService } from '../../../domain/service/';
 
 // Entidades
-import { UsuarioDomainEntity } from '../../../domain/entity/';
+import { IUsuarioDomain, UsuarioDomainEntity } from '../../../domain/entity/';
+
+// DTO's
+import { UsuarioDto } from '../../../domain/dto';
 
 /**
  * Este metodo permite modificar la informacion del usuario con el ID dado, almacenada en la DB
@@ -22,10 +25,16 @@ export class ActualizarUsuarioUseCase {
   ) {}
 
   execute(
-    usuarioId: string,
-    usuarioData: UsuarioDomainEntity,
+    id: string,
+    usuarioData: UsuarioDto,
   ): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return this.usuarioDomainService.actualizar(usuarioId, usuarioData);
+    const dto = {
+      ...usuarioData,
+      apellidos: usuarioData.nombres.split(' ')[1],
+      correo: usuarioData.email,
+    } as IUsuarioDomain;
+    dto.nombres = usuarioData.nombres.split(' ')[0];
+    return this.usuarioDomainService.actualizar(id, dto);
   }
 }

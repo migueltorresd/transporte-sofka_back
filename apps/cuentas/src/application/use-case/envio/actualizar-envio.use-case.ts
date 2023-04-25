@@ -7,6 +7,9 @@ import { IEnvioDomainService } from '../../../domain/service';
 // Entidades
 import { EnvioDomainEntity } from '../../../domain/entity';
 
+// DTO's
+import { EnvioDto } from '../../../domain/dto';
+
 /**
  * Este metodo permite Actualizar un envio
  * Recibe un conjunto de datos de envio como parametros de entrada
@@ -20,8 +23,8 @@ export class ActualizarEnvioUseCase {
     private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
   ) {}
 
-  execute(envioData: EnvioDomainEntity): Observable<EnvioDomainEntity> {
+  execute(id: string, envioData: EnvioDto): Observable<EnvioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return this.envioDomainService.actualizar(envioData.id, envioData);
+    return this.envioDomainService.actualizar(id, envioData);
   }
 }

@@ -23,10 +23,10 @@ export class EnvioController {
   @Put('actualizar-envio')
   actualizarEnvio(
     @Query('id') id: string,
-    @Body() envioActualizar: Partial<EnvioDto>,
+    @Body() envio: Partial<EnvioDto>,
   ): Observable<Response> {
     this.useCase.toActualizarEnvio();
-    return this.useCase.execute(id, envioActualizar);
+    return this.useCase.execute(id, envio);
   }
 
   @Get('obtener-por-id')
