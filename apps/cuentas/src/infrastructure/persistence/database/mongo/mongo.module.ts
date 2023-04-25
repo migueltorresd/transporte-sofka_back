@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './config';
 import { SchemasMongo } from './schema';
+import { UsuarioServiceMongo } from './service';
+import { UsuarioRepositoryMongo } from './repository';
 
 @Module({
   imports: [
@@ -15,7 +17,11 @@ import { SchemasMongo } from './schema';
     ]),
   ],
   controllers: [],
-  providers: [],
-  exports: [],
+  providers: [
+    MongooseConfigService,
+    UsuarioServiceMongo,
+    UsuarioRepositoryMongo,
+  ],
+  exports: [UsuarioServiceMongo, UsuarioRepositoryMongo],
 })
 export class MongoModule {}
