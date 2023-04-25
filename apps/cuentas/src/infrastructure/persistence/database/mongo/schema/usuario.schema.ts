@@ -1,12 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { UsuarioDomainEntity } from '../../../../../domain/entity';
-import { SchemaTypes } from 'mongoose';
 
 @Schema({ collection: 'Usuarios', versionKey: false, strict: false })
 export class UsuarioEntityMongo extends UsuarioDomainEntity {
-  @Prop({ type: SchemaTypes.ObjectId, auto: true })
-  id: string;
-
   @Prop({ required: false })
   nombreUsuario: string;
 

@@ -1,14 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { IUsuarioDomainService } from '../../../../../domain/service';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { UsuarioRepositoryMongo } from '../repository';
 import { UsuarioEntityMongo } from '../schema';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsuarioServiceMongo
   implements IUsuarioDomainService<UsuarioEntityMongo>
 {
-  constructor(private readonly repository: UsuarioRepositoryMongo) {}
+  constructor(
+    private readonly repository: UsuarioRepositoryMongo,
+    private readonly jwtService: JwtService,
+  ) {}
 
   crear(modelo: UsuarioEntityMongo): Observable<UsuarioEntityMongo> {
     return this.repository.crear(modelo);
@@ -37,10 +41,9 @@ export class UsuarioServiceMongo
     return this.repository.obtenerPorDni(dni);
   }
 
-  loginUsuario(
-    correo: string,
-    contraseña: string,
-  ): Observable<UsuarioEntityMongo> {
-    return this.repository.loginUsuario(correo, contraseña);
+  loginUsuario(correo: string, contraseña: string): Observable<string> {
+    return from(
+      this.jwtService.sign(this.repository.loginUsuario(correo, contraseña)),
+    );
   }
 }

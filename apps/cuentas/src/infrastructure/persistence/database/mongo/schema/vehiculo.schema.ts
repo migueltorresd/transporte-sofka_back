@@ -1,12 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { VehiculoDomainEntity } from '../../../../../domain/entity';
-import { SchemaTypes } from 'mongoose';
 
 @Schema({ collection: 'Vehiculos', versionKey: false, strict: false })
 export class VehiculoEntityMongo extends VehiculoDomainEntity {
-  @Prop({ type: SchemaTypes.ObjectId, auto: true })
-  id: string;
-
   @Prop({ required: true })
   conductorId: string;
 
