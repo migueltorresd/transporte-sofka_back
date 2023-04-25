@@ -13,7 +13,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
   apellidos: string;
   dni: string;
   correo: string;
-  telefono?: string;
+  telefono: string;
   rol: number;
 
   constructor(data: IUsuarioDomain) {
