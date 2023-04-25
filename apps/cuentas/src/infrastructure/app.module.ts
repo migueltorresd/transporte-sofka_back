@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongoModule } from './persistence/database/mongo';
-import { UsuarioController } from './controller/usuario.controller';
-import { UsuarioService } from './service';
+import { Controllers } from './controller';
+import { Services } from './service';
 
 @Module({
   imports: [MongoModule],
-  controllers: [UsuarioController],
-  providers: [UsuarioService],
-  exports: [UsuarioService],
+  controllers: [...Controllers],
+  providers: [...Services],
+  exports: [...Services],
 })
 export class AppModule {}

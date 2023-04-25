@@ -1,10 +1,12 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { EnvioDelegate } from '../../application/delegate/envio.delegate';
+import { EnvioDelegate } from '../../application/delegate';
 import { EnvioService } from '../service';
 import { Observable } from 'rxjs';
-import { EnvioDto } from '../dto/envio.dto';
+import { EnvioDto } from '../dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('envio')
+@ApiTags('envio')
+@Controller('api/envio')
 export class EnvioController {
   private readonly useCase: EnvioDelegate;
 
@@ -18,7 +20,7 @@ export class EnvioController {
     return this.useCase.execute(envio);
   }
 
-  @Put(':id')
+  @Put('actualizar-envio')
   actualizarEnvio(
     @Param('id') id: string,
     @Body() envioActualizar: Partial<EnvioDto>,
@@ -27,13 +29,13 @@ export class EnvioController {
     return this.useCase.execute(id, envioActualizar);
   }
 
-  @Get(':id')
+  @Get('obtener-por-id')
   obtenerPorId(@Param('id') id: string): Observable<Response> {
     this.useCase.toBuscarEnvioPorId();
     return this.useCase.execute(id);
   }
 
-  @Get()
+  @Get('obtener-todos')
   obtenerTodos(): Observable<Response> {
     this.useCase.toBuscarEnvios();
     return this.useCase.execute();

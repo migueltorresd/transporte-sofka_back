@@ -1,11 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post, Put } from '@nestjs/common';
-import { UsuarioDelegate } from '../../application/delegate/usuario.delegate';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { UsuarioDelegate } from '../../application/delegate';
 import { UsuarioService } from '../service';
 import { Observable } from 'rxjs';
-import { UsuarioDomainEntity } from '../../domain';
-import { UsuarioDto } from '../dto/Usuario.dto';
+import { UsuarioDto } from '../dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('usuario')
+@ApiTags('usuario')
+@Controller('api/usuario')
 export class UsuarioController {
   private readonly useCase: UsuarioDelegate;
 
@@ -19,7 +20,7 @@ export class UsuarioController {
     return this.useCase.execute(usuario);
   }
 
-  @Put(':id')
+  @Put('actualizar-usuario')
   actualizarUsuario(
     @Param('id') id: string,
     @Body() usuarioActualizar: Partial<UsuarioDto>,
@@ -28,25 +29,25 @@ export class UsuarioController {
     return this.useCase.execute(id, usuarioActualizar);
   }
 
-  @Get(':dni')
+  @Get('obtener-por-dni')
   obtenerPorDni(@Param('dni') dni: string): Observable<Response> {
     this.useCase.toBuscarUsuarioPorDni();
     return this.useCase.execute(dni);
   }
 
-  @Get(':id')
+  @Get('obtener-por-id')
   obtenerPorId(@Param('id') id: string): Observable<Response> {
     this.useCase.toBuscarUsuarioPorId();
     return this.useCase.execute(id);
   }
 
-  @Get()
+  @Get('obtener-por-correo')
   obtenerPorCorreo(@Param('correo') correo: string): Observable<Response> {
     this.useCase.toBuscarUsuarioPorCorreo();
     return this.useCase.execute(correo);
   }
 
-  @Get()
+  @Get('obtener-todos')
   obtenerTodos(): Observable<Response> {
     this.useCase.toBuscarTodos();
     return this.useCase.execute();

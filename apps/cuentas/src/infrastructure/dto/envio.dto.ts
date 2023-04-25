@@ -1,22 +1,28 @@
-import { IsBoolean, IsNumber, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsNumber, IsString } from 'class-validator';
 
 export class EnvioDto {
+  @ApiProperty()
+  @IsString()
+  usuarioId: string;
 
-    @IsString()
-    usuarioId: string;
+  @ApiProperty()
+  @IsString()
+  origen: string;
 
-    @IsString()
-    origen: string;
+  @ApiProperty()
+  @IsString()
+  destino: string;
 
-    @IsString()
-    destino: string;
+  @ApiProperty()
+  @IsString()
+  peso: string;
 
-    @IsString()
-    peso: string;
+  @ApiProperty()
+  @IsNumber()
+  costo: number;
 
-    @IsNumber()
-    costo: number;
-
-    @IsBoolean()
-    cancelado: boolean;
+  @ApiProperty()
+  @IsBoolean()
+  cancelado: boolean;
 }

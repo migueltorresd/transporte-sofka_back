@@ -1,18 +1,24 @@
-import { IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
 
-export class UsuarioDto{
-    @IsString()
-    rol: string;
+export class UsuarioDto {
+  @ApiProperty()
+  @IsString()
+  rol: string;
 
-    @IsString()
-    nombres: string;
-    
-    @IsString()
-    apellidos
+  @ApiProperty()
+  @IsString()
+  nombres: string;
 
-    @IsString()
-    correo
+  @ApiProperty()
+  @IsString()
+  apellidos;
 
-    @IsString()
-    password
+  @ApiProperty()
+  @IsString()
+  correo;
+
+  @ApiProperty()
+  @IsString()
+  password;
 }
