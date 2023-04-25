@@ -1,10 +1,12 @@
 import { Body, Controller, Post, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { BoletoDelegate } from '../../application';
 import { BoletoService } from '../service';
 import { Observable } from 'rxjs';
 import { BoletoDto } from '../dto/boleto.dto';
 
-@Controller('boleto')
+@ApiTags('boleto')
+@Controller('api/boleto')
 export class BoletoController {
   private readonly useCase: BoletoDelegate;
 
@@ -18,7 +20,7 @@ export class BoletoController {
     return this.useCase.execute(boleto);
   }
 
-  @Put()
+  @Put('actualizar-boleto')
   actualizarBoleto(
     @Body() boletoActualizar: Partial<BoletoDto>,
   ): Observable<Response> {

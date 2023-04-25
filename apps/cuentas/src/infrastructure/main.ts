@@ -21,6 +21,10 @@ async function bootstrap() {
     swaggerOptions: { defaultModelsExpandDepth: -1 },
   });
 
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
   await app.listen(parseInt(process.env.CUENTAS_PORT) | 3000);
 }
 bootstrap();
