@@ -33,7 +33,6 @@ export class EnvioDomainEntity implements IEnvioDomain {
     if (data.costo) this.costo = data.costo;
     else this.costo = 0;
 
-    if (data.cancelado) this.cancelado = data.cancelado;
-    else this.cancelado = false;
+    this.cancelado = data.cancelado != undefined ? data.cancelado : false;
   }
 }
