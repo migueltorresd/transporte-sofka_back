@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
 import { EnvioDelegate } from '../../application/delegate';
 import { EnvioService } from '../service';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class EnvioController {
 
   @Put('actualizar-envio')
   actualizarEnvio(
-    @Param('id') id: string,
+    @Query('id') id: string,
     @Body() envioActualizar: Partial<EnvioDto>,
   ): Observable<Response> {
     this.useCase.toActualizarEnvio();
@@ -30,7 +30,8 @@ export class EnvioController {
   }
 
   @Get('obtener-por-id')
-  obtenerPorId(@Param('id') id: string): Observable<Response> {
+  obtenerPorId(@Query('id') id: string): Observable<Response> {
+    console.log(id + ' desde el controller');
     this.useCase.toBuscarEnvioPorId();
     return this.useCase.execute(id);
   }
