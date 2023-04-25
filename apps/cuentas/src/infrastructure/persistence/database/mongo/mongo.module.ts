@@ -4,9 +4,11 @@ import { MongooseConfigService } from './config';
 import { SchemasMongo, SchemasNamesMongo } from './schema';
 import { RepositoriesMongo } from './repository';
 import { ServicesMongo } from './service';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    JwtModule.register({ secret: process.env.SECRET_KEY }),
     MongooseModule.forRootAsync({
       useClass: MongooseConfigService,
     }),
