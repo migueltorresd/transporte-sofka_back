@@ -29,12 +29,11 @@ export class ActualizarUsuarioUseCase {
     usuarioData: UsuarioDto,
   ): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    const dto = {
+  const dto = {
       ...usuarioData,
       apellidos: usuarioData.nombres.split(' ')[1],
-      correo: usuarioData.email,
+      nombres: usuarioData.nombres.split(' ')[0]
     } as IUsuarioDomain;
-    dto.nombres = usuarioData.nombres.split(' ')[0];
     return this.usuarioDomainService.actualizar(id, dto);
   }
 }

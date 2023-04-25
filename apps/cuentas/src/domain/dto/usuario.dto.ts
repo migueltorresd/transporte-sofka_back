@@ -16,7 +16,7 @@ export class UsuarioDto {
 
   @ApiProperty()
   @IsString()
-  email: string;
+  correo: string;
 
   @ApiProperty()
   @IsString()
