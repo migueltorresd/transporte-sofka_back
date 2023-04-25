@@ -7,5 +7,5 @@ export interface IVehiculoDomain {
   placa: string;
   color: string;
   capacidad: number;
-  disponible: boolean;
+  disponible?: boolean;
 }

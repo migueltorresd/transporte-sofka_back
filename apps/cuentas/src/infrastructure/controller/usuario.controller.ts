@@ -56,6 +56,6 @@ export class UsuarioController {
   @Post('login')
   loginUsuario(@Body() credenciales: UsuarioDto): Observable<Response> {
     this.useCase.toLoginUsuario();
-    return this.useCase.execute(credenciales.correo, credenciales.password);
+    return this.useCase.execute(credenciales.email, credenciales.password);
   }
 }

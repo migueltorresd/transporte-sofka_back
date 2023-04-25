@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { IUsuarioDomainService } from '../../../domain/service/';
 
 // Entidades
-import { UsuarioDomainEntity } from '../../../domain/entity/';
+import { IUsuarioDomain, UsuarioDomainEntity } from '../../../domain/entity/';
+
+// DTO's
+import { UsuarioDto } from '../../../domain/dto';
 
 /**
  * Este metodo permite Registrar un nuevo usuario en la aplicacion y almacenar sus datos en la DB
@@ -20,8 +23,14 @@ export class RegistrarUsuarioUseCase {
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(usuarioData: UsuarioDomainEntity): Observable<UsuarioDomainEntity> {
+  execute(usuarioData: UsuarioDto): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return this.usuarioDomainService.crear(usuarioData);
+    const dto = {
+      ...usuarioData,
+      apellidos: usuarioData.nombres.split(' ')[1],
+      correo: usuarioData.email,
+    } as IUsuarioDomain;
+    dto.nombres = usuarioData.nombres.split(' ')[0];
+    return this.usuarioDomainService.crear(new UsuarioDomainEntity(dto));
   }
 }

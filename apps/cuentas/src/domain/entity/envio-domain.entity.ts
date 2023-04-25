@@ -6,7 +6,7 @@ import { IEnvioDomain } from './interface/envio-domain.interface';
 
 export class EnvioDomainEntity implements IEnvioDomain {
   id?: string;
-  fecha?: Date;
+  fecha?: number;
   usuarioId: string;
   origen: string;
   destino: string;
@@ -19,7 +19,7 @@ export class EnvioDomainEntity implements IEnvioDomain {
     else this.id = new Types.ObjectId().toString();
 
     if (data.fecha) this.fecha = data.fecha;
-    else this.fecha = new Date();
+    else this.fecha = Date.now();
 
     if (data.usuarioId) this.usuarioId = data.usuarioId;
 

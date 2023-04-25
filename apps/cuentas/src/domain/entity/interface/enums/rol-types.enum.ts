@@ -1,4 +1,4 @@
 export enum RolTypes {
-  USUARIO = 1,
-  CONDUCTOR = 2,
+  USUARIO = 10,
+  CONDUCTOR = 20,
 }

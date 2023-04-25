@@ -1,6 +1,6 @@
 export interface IEnvioDomain {
   id?: string;
-  fecha?: Date;
+  fecha?: number;
   usuarioId: string;
   origen: string;
   destino: string;

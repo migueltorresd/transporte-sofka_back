@@ -11,7 +11,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
   password: string;
   nombres: string;
   apellidos: string;
-  dni?: string;
+  dni: string;
   correo: string;
   telefono?: string;
   rol: number;
