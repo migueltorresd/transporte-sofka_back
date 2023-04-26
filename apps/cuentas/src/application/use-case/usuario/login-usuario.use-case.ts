@@ -23,7 +23,6 @@ export class LoginUsuarioUseCase {
   ) {}
 
   execute(correo: string, contraseña: string): Observable<string> {
-    //TODO: terminar de implementar caso de uso
     return this.usuarioDomainService.loginUsuario(
       correo,
       this.generarPassword(contraseña),

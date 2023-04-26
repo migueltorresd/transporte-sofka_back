@@ -28,7 +28,6 @@ export class RegistrarUsuarioUseCase {
   ) {}
 
   execute(usuarioData: UsuarioDto): Observable<UsuarioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
     let dto: IUsuarioDomain = {
       ...usuarioData,
       apellidos: this.capitalizePrimeraLetra(usuarioData.nombres.split(' ')[1]),

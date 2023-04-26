@@ -22,7 +22,6 @@ export class BuscarVehiculoPorIdUseCase {
   ) {}
 
   execute(id: string): Observable<VehiculoDomainEntity> {
-    //TODO: terminar de implementar caso de uso
     return this.vehiculosDomainService.obtenerPorId(id);
   }
 }

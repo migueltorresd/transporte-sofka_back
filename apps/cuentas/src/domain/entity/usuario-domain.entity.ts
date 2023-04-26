@@ -7,6 +7,7 @@ import { RolTypes } from './interface/enums';
 
 export class UsuarioDomainEntity implements IUsuarioDomain {
   id?: string;
+  _id?: string;
   nombreUsuario?: string;
   contraseña: string;
   nombres: string;

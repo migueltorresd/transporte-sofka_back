@@ -19,6 +19,7 @@ import {
   ActualizarUsuarioUseCase,
   RegistrarUsuarioUseCase,
   GenerarNombreDeUsuarioUsuarioUseCase,
+  BuscarUsuarioPorCorreoUseCase,
   //BorrarUsuarioUseCase,
 } from '../use-case/usuario/';
 
@@ -106,7 +107,9 @@ export class UsuarioDelegate implements IUseCase {
    * @memberof UsuarioDelegate
    */
   toBuscarUsuarioPorCorreo(): void {
-    this.delegate = new BuscarUsuarioPorIdUseCase(this.usuarioDomainService);
+    this.delegate = new BuscarUsuarioPorCorreoUseCase(
+      this.usuarioDomainService,
+    );
   }
 
   /**

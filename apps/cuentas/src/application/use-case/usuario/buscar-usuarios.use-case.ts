@@ -21,7 +21,6 @@ export class BuscarUsuariosUseCase {
   ) {}
 
   execute(): Observable<UsuarioDomainEntity[]> {
-    //TODO: terminar de implementar caso de uso
     return this.usuarioDomainService.obtenerTodos();
   }
 }
