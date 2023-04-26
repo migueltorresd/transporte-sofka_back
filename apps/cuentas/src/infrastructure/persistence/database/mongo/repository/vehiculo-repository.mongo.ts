@@ -23,7 +23,9 @@ export class VehiculoRepositoryMongo implements IBase<VehiculoEntityMongo> {
     modelo: VehiculoEntityMongo,
   ): Observable<VehiculoEntityMongo> {
     return from(
-      this.VehiculoRepositoryMongo.findOneAndUpdate({ _id: id }, modelo).exec(),
+      this.VehiculoRepositoryMongo.findOneAndUpdate({ _id: id }, modelo, {
+        new: true,
+      }).exec(),
     );
   }
 

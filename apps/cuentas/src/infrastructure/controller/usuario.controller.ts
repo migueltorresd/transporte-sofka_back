@@ -53,6 +53,12 @@ export class UsuarioController {
     return this.useCase.execute();
   }
 
+  @Get('generar-usuario')
+  GenerarNombreDeUsuarioUsuario(@Query('id') id: string): Observable<Response> {
+    this.useCase.toGenerarNombreDeUsuarioUsuarioUseCase();
+    return this.useCase.execute(id);
+  }
+
   @Post('login')
   loginUsuario(@Body() credenciales: CredencialesDto): Observable<Response> {
     this.useCase.toLoginUsuario();

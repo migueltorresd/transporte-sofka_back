@@ -23,7 +23,9 @@ export class EnvioRepositoryMongo implements IBase<EnvioEntityMongo> {
     modelo: EnvioEntityMongo,
   ): Observable<EnvioEntityMongo> {
     return from(
-      this.EnvioRepositoryMongo.findOneAndUpdate({ _id: id }, modelo).exec(),
+      this.EnvioRepositoryMongo.findOneAndUpdate({ _id: id }, modelo, {
+        new: true,
+      }).exec(),
     );
   }
 

@@ -18,6 +18,7 @@ import {
   BuscarUsuarioPorIdUseCase,
   ActualizarUsuarioUseCase,
   RegistrarUsuarioUseCase,
+  GenerarNombreDeUsuarioUsuarioUseCase,
   //BorrarUsuarioUseCase,
 } from '../use-case/usuario/';
 
@@ -115,6 +116,17 @@ export class UsuarioDelegate implements IUseCase {
    */
   toBuscarTodos(): void {
     this.delegate = new BuscarUsuariosUseCase(this.usuarioDomainService);
+  }
+
+  /**
+   * Metodo que realiza la ejecucion del caso de uso GenerarNombreDeUsuarioUsuarioUseCase
+   *
+   * @memberof UsuarioDelegate
+   */
+  toGenerarNombreDeUsuarioUsuarioUseCase(): void {
+    this.delegate = new GenerarNombreDeUsuarioUsuarioUseCase(
+      this.usuarioDomainService,
+    );
   }
 
   /**

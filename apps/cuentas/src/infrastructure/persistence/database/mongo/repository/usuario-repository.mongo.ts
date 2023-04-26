@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UsuarioEntityMongo } from '../schema/usuario.schema';
 import { IBase } from './interface/base.interface';
-import { Observable, from, map } from 'rxjs';
+import { EMPTY, Observable, concatMap, expand, from, map } from 'rxjs';
 import { UsuarioDomainEntity } from '../../../../../domain/entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -23,7 +23,9 @@ export class UsuarioRepositoryMongo implements IBase<UsuarioEntityMongo> {
     modelo: UsuarioEntityMongo,
   ): Observable<UsuarioEntityMongo> {
     return from(
-      this.UsuarioRepositoryMongo.findOneAndUpdate({ _id: id }, modelo).exec(),
+      this.UsuarioRepositoryMongo.findOneAndUpdate({ _id: id }, modelo, {
+        new: true,
+      }).exec(),
     );
   }
 
@@ -61,6 +63,33 @@ export class UsuarioRepositoryMongo implements IBase<UsuarioEntityMongo> {
         correo: correo,
         contraseña: contraseña,
       }).exec(),
+    );
+  }
+
+  generarNombredeUsuario(id: string): Observable<UsuarioEntityMongo> {
+    let index = 1;
+    let nombreUsuario = '';
+    return from(this.UsuarioRepositoryMongo.findOne({ _id: id }).exec()).pipe(
+      expand((usuario: UsuarioEntityMongo) => {
+        if (usuario === null) {
+          return EMPTY;
+        }
+        nombreUsuario =
+          usuario.nombres.slice(0, index) + usuario.apellidos.split(' ')[0];
+        index++;
+        return this.UsuarioRepositoryMongo.findOne({
+          nombreUsuario: nombreUsuario,
+        }).exec();
+      }),
+      concatMap(() => {
+        return from(
+          this.UsuarioRepositoryMongo.findOneAndUpdate(
+            { _id: id },
+            { $set: { nombreUsuario: nombreUsuario } },
+            { new: true },
+          ).exec(),
+        );
+      }),
     );
   }
 }
