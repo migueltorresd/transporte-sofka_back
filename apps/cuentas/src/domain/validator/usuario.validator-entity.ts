@@ -25,7 +25,7 @@ export function validarUsuario(
   if (!entity.correo || entity.correo.trim() === '') {
     throw new BadRequestException('El correo no es valido');
   }
-  if (!entity.contraseña || entity.contraseña.trim() === '') {
+  if (!entity.contrasenna || entity.contrasenna.trim() === '') {
     throw new BadRequestException('La contraseña no es valida');
   }
   if (!entity.dni || entity.dni.trim() === '') {

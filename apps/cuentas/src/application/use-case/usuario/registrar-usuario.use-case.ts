@@ -33,7 +33,7 @@ export class RegistrarUsuarioUseCase {
       apellidos: this.capitalizePrimeraLetra(usuarioData.nombres.split(' ')[1]),
       nombres: this.capitalizePrimeraLetra(usuarioData.nombres.split(' ')[0]),
     };
-    dto = this.generarPassword(dto);
+    dto = this.generarContraseña(dto);
     return this.usuarioDomainService.crear(this.generarEntidad(dto)).pipe(
       tap((usuario) => {
         validarUsuario(usuario);
@@ -49,10 +49,10 @@ export class RegistrarUsuarioUseCase {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  private generarPassword(dto: IUsuarioDomain): IUsuarioDomain {
-    dto.contraseña = crypto
+  private generarContraseña(dto: IUsuarioDomain): IUsuarioDomain {
+    dto.contrasenna = crypto
       .createHmac('sha256', process.env.SECRET_KEY)
-      .update(dto.contraseña)
+      .update(dto.contrasenna)
       .digest('hex');
     return dto;
   }

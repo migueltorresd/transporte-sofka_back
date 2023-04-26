@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { EnvioEntityMongo } from '../schema/envio.schema';
 import { IBase } from './interface/base.interface';
 import { Observable, concatMap, from, map, of, zip } from 'rxjs';
@@ -68,13 +68,19 @@ export class EnvioRepositoryMongo implements IBase<EnvioEntityMongo> {
       }),
       concatMap(([res, envio]: [AxiosResponse, EnvioEntityMongo]) => {
         const data = res.data as IGoogleResponse;
-        const costo =
-          this.calcularRecargoTiempo(data.rows[0].elements[0].duration.value) +
-          this.calcularRecargoPeso(envio.peso);
-        return this.actualizar(envio._id, {
-          estimado: data.rows[0].elements[0].duration.value,
-          costo: costo,
-        });
+        if (data.rows[0].elements[0].status === 'OK' && envio) {
+          const costo =
+            this.calcularRecargoTiempo(
+              data.rows[0].elements[0].duration.value,
+            ) + this.calcularRecargoPeso(envio.peso);
+          return this.actualizar(envio._id, {
+            estimado: data.rows[0].elements[0].duration.value,
+            costo: costo,
+          });
+        } else {
+          this.borrar(envio._id).subscribe();
+          throw new BadRequestException('Error al calcular el envio');
+        }
       }),
     );
   }

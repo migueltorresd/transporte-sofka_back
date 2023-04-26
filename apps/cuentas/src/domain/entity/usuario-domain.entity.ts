@@ -9,7 +9,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
   id?: string;
   _id?: string;
   nombreUsuario?: string;
-  contraseña: string;
+  contrasenna: string;
   nombres: string;
   apellidos: string;
   dni: string;
@@ -23,7 +23,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
 
     if (data.nombreUsuario) this.nombreUsuario = data.nombreUsuario;
 
-    if (data.contraseña) this.contraseña = data.contraseña;
+    if (data.contrasenna) this.contrasenna = data.contrasenna;
 
     if (data.nombres) this.nombres = data.nombres;
 
