@@ -3,6 +3,8 @@ import { EnvioDomainEntity } from '../entity';
 
 export function validarEnvio(entity: EnvioDomainEntity): EnvioDomainEntity {
   const objectIdRegex = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
+  const coordinatesRegex =
+    /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/;
   if (!entity.id || entity.id.trim() === '') {
     throw new BadRequestException('El id no es valido');
   }
@@ -13,11 +15,19 @@ export function validarEnvio(entity: EnvioDomainEntity): EnvioDomainEntity {
   ) {
     throw new BadRequestException('El usuarioId no es valido');
   }
-  if (!entity.origen || entity.origen.trim() === '') {
-    throw new BadRequestException('Los nombres no son validos');
+  if (
+    !entity.origen ||
+    entity.origen.trim() === '' ||
+    !coordinatesRegex.test(entity.origen)
+  ) {
+    throw new BadRequestException('El origen no es valido');
   }
-  if (!entity.destino || entity.destino.trim() === '') {
-    throw new BadRequestException('Los apellidos no son validos');
+  if (
+    !entity.destino ||
+    entity.destino.trim() === '' ||
+    !coordinatesRegex.test(entity.destino)
+  ) {
+    throw new BadRequestException('El destino no es valido');
   }
   if (
     typeof entity.costo !== 'number' ||
