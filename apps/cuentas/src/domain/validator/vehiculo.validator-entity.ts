@@ -4,15 +4,14 @@ import { VehiculoDomainEntity } from '../entity';
 export function validarVehiculo(
   entity: VehiculoDomainEntity,
 ): VehiculoDomainEntity {
-  const uuidRegex =
-    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+  const objectIdRegex = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
   if (!entity.id || entity.id.trim() === '') {
     throw new BadRequestException('El id no es valido');
   }
   if (
     !entity.conductorId ||
     entity.conductorId.trim() === '' ||
-    !uuidRegex.test(entity.conductorId)
+    !objectIdRegex.test(entity.conductorId)
   ) {
     throw new BadRequestException('El conductorId no es valido');
   }
