@@ -28,4 +28,8 @@ export class EnvioServiceMongo
   obtenerPorId(id: string): Observable<EnvioEntityMongo> {
     return this.repository.obtenerPorId(id);
   }
+
+  calcularPorId(id: string): Observable<EnvioEntityMongo> {
+    return this.repository.calcularPorId(id);
+  }
 }
