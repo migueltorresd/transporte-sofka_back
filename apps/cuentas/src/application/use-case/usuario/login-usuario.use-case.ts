@@ -1,5 +1,6 @@
 // Librerias
 import { Observable } from 'rxjs';
+import * as crypto from 'crypto';
 
 // Servicios de dominio
 import { IUsuarioDomainService } from '../../../domain/service';
@@ -23,6 +24,17 @@ export class LoginUsuarioUseCase {
 
   execute(correo: string, contraseña: string): Observable<string> {
     //TODO: terminar de implementar caso de uso
-    return this.usuarioDomainService.loginUsuario(correo, contraseña);
+    return this.usuarioDomainService.loginUsuario(
+      correo,
+      this.generarPassword(contraseña),
+    );
+  }
+
+  private generarPassword(contraseña: string): string {
+    const hash = crypto
+      .createHmac('sha256', process.env.SECRET_KEY)
+      .update(contraseña)
+      .digest('hex');
+    return hash;
   }
 }

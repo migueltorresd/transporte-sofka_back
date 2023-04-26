@@ -1,5 +1,6 @@
 // Librerias
 import { Observable, tap } from 'rxjs';
+import * as crypto from 'crypto';
 
 // Servicios de dominio
 import { IUsuarioDomainService } from '../../../domain/service/';
@@ -28,11 +29,12 @@ export class RegistrarUsuarioUseCase {
 
   execute(usuarioData: UsuarioDto): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    const dto: IUsuarioDomain = {
+    let dto: IUsuarioDomain = {
       ...usuarioData,
       apellidos: usuarioData.nombres.split(' ')[1],
       nombres: usuarioData.nombres.split(' ')[0],
     };
+    dto = this.generarPassword(dto);
     return this.usuarioDomainService.crear(this.generarEntidad(dto)).pipe(
       tap((usuario) => {
         validarUsuario(usuario);
@@ -42,5 +44,13 @@ export class RegistrarUsuarioUseCase {
 
   private generarEntidad(dto: IUsuarioDomain): UsuarioDomainEntity {
     return validarUsuario(new UsuarioDomainEntity(dto));
+  }
+
+  private generarPassword(dto: IUsuarioDomain): IUsuarioDomain {
+    dto.contraseña = crypto
+      .createHmac('sha256', process.env.SECRET_KEY)
+      .update(dto.contraseña)
+      .digest('hex');
+    return dto;
   }
 }
