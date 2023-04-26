@@ -87,8 +87,8 @@ export class EnvioRepositoryMongo implements IBase<EnvioEntityMongo> {
   }
 
   private calcularRecargoPeso(x: number): number {
-    const minutos = Math.floor(x / 1000);
-    const recargos = Math.floor(minutos / 25);
+    const peso = Math.floor(x);
+    const recargos = Math.floor(peso / 25);
     const costo = recargos * 2;
     return costo;
   }
