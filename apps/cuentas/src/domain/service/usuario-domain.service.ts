@@ -9,4 +9,5 @@ export interface IUsuarioDomainService<T> {
   obtenerPorDni(dni: string): Observable<T>;
   obtenerTodos(): Observable<T[]>;
   loginUsuario(correo: string, contraseña: string): Observable<string>;
+  generarNombredeUsuario(id: string): Observable<T>;
 }

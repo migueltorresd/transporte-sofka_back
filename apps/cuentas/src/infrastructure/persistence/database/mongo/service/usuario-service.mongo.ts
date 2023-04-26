@@ -48,4 +48,8 @@ export class UsuarioServiceMongo
       }),
     );
   }
+
+  generarNombredeUsuario(id: string): Observable<UsuarioEntityMongo> {
+    return this.repository.generarNombredeUsuario(id);
+  }
 }

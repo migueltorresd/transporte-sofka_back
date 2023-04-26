@@ -31,7 +31,6 @@ export class EnvioController {
 
   @Get('obtener-por-id')
   obtenerPorId(@Query('id') id: string): Observable<Response> {
-    console.log(id + ' desde el controller');
     this.useCase.toBuscarEnvioPorId();
     return this.useCase.execute(id);
   }

@@ -23,7 +23,9 @@ export class BoletoRepositoryMongo implements IBase<BoletoEntityMongo> {
     modelo: BoletoEntityMongo,
   ): Observable<BoletoEntityMongo> {
     return from(
-      this.BoletoRepositoryMongo.findOneAndUpdate({ _id: id }, modelo).exec(),
+      this.BoletoRepositoryMongo.findOneAndUpdate({ _id: id }, modelo, {
+        new: true,
+      }).exec(),
     );
   }
 
