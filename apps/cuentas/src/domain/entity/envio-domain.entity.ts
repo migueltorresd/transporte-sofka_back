@@ -11,7 +11,8 @@ export class EnvioDomainEntity implements IEnvioDomain {
   origen: string;
   destino: string;
   peso: number;
-  costo: number;
+  costo?: number;
+  estimado?: number;
   cancelado?: boolean;
 
   constructor(data: IEnvioDomain) {
@@ -29,6 +30,9 @@ export class EnvioDomainEntity implements IEnvioDomain {
 
     if (data.peso) this.peso = data.peso;
     else this.peso = 0;
+
+    if (data.estimado) this.estimado = data.estimado;
+    else this.estimado = 0;
 
     if (data.costo) this.costo = data.costo;
     else this.costo = 0;

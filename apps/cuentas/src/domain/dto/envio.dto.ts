@@ -20,9 +20,13 @@ export class EnvioDto {
 
   @ApiProperty()
   @IsNumber()
-  costo: number;
+  costo?: number;
+
+  @ApiProperty()
+  @IsNumber()
+  estimado?: number;
 
   @ApiProperty()
   @IsBoolean()
-  cancelado: boolean;
+  cancelado?: boolean;
 }
