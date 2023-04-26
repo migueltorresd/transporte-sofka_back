@@ -12,8 +12,7 @@ export function validarUsuario(
     typeof entity.rol !== 'number' ||
     isNaN(entity.rol) ||
     entity.rol < 0 ||
-    entity.rol !== RolTypes.USUARIO ||
-    RolTypes.CONDUCTOR
+    !(entity.rol == RolTypes.USUARIO || RolTypes.CONDUCTOR)
   ) {
     throw new BadRequestException('El rol no es valido');
   }
