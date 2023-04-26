@@ -6,6 +6,7 @@ import { IEnvioDomain } from './interface/envio-domain.interface';
 
 export class EnvioDomainEntity implements IEnvioDomain {
   id?: string;
+  _id?: string;
   fecha?: number;
   usuarioId: string;
   origen: string;

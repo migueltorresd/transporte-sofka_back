@@ -13,6 +13,7 @@ import {
   BuscarEnviosUseCase,
   ActualizarEnvioUseCase,
   RegistrarEnvioUseCase,
+  CalcularEnvioPorIdUseCase,
 } from '../use-case/envio';
 
 /**
@@ -82,5 +83,14 @@ export class EnvioDelegate implements IUseCase {
    */
   toBuscarEnvios(): void {
     this.delegate = new BuscarEnviosUseCase(this.envioDomainService);
+  }
+
+  /**
+   * Metodo que realiza la ejecucion del caso de uso BuscarEnvioPorId
+   *
+   * @memberof EnvioDelegate
+   */
+  toCalcularEnvioPorId(): void {
+    this.delegate = new CalcularEnvioPorIdUseCase(this.envioDomainService);
   }
 }

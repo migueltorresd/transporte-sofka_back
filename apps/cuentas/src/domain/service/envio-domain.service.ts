@@ -6,4 +6,5 @@ export interface IEnvioDomainService<T> {
   //borrar(id: string): Observable<boolean>;
   obtenerTodos(): Observable<T[]>;
   obtenerPorId(id: string): Observable<T>;
+  calcularPorId(id: string): Observable<T>;
 }
