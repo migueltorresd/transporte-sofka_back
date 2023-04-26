@@ -19,7 +19,11 @@ export class EnvioRepositoryMongo implements IBase<EnvioEntityMongo> {
   ) {}
 
   crear(modelo: EnvioDomainEntity): Observable<EnvioEntityMongo> {
-    return from(this.EnvioRepositoryMongo.create(modelo));
+    return from(this.EnvioRepositoryMongo.create(modelo)).pipe(
+      concatMap((res: EnvioEntityMongo) => {
+        return this.calcularPorId(res._id);
+      }),
+    );
   }
 
   actualizar(
