@@ -2,6 +2,11 @@ import * as dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import {
+  BadRequestException,
+  ValidationError,
+  ValidationPipe,
+} from '@nestjs/common';
 
 async function bootstrap() {
   dotenv.config({ path: 'environments/.' + process.env.NODE_ENV + '.env' });
@@ -25,6 +30,23 @@ async function bootstrap() {
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   });
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      forbidUnknownValues: true,
+      exceptionFactory: (errors: ValidationError[]) => {
+        const messages = errors.map(
+          (error) =>
+            `${error.property} tiene un valor incorrecto ${
+              error.value
+            }, ${Object.values(error.constraints).join(', ')}`,
+        );
+        return new BadRequestException(messages);
+      },
+    }),
+  );
   await app.listen(parseInt(process.env.CUENTAS_PORT) | 3000);
 }
 bootstrap();
