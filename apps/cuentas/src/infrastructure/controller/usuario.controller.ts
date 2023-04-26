@@ -2,7 +2,7 @@ import { Body, Controller, Get, Query, Post, Put } from '@nestjs/common';
 import { UsuarioDelegate } from '../../application/delegate';
 import { UsuarioService } from '../service';
 import { Observable } from 'rxjs';
-import { CredencialesDto, UsuarioDto } from '../dto';
+import { CrearUsuarioDto, CredencialesDto, UsuarioDto } from '../dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('usuario')
@@ -15,7 +15,7 @@ export class UsuarioController {
   }
 
   @Post('registrar')
-  registrarUsuario(@Body() usuario: UsuarioDto): Observable<Response> {
+  registrarUsuario(@Body() usuario: CrearUsuarioDto): Observable<Response> {
     this.useCase.toRegistrarUsuario();
     return this.useCase.execute(usuario);
   }

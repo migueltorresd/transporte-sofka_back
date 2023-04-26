@@ -2,7 +2,7 @@ import { Body, Controller, Get, Query, Post, Put } from '@nestjs/common';
 import { VehiculoDelegate } from '../../application/delegate';
 import { VehiculoService } from '../service';
 import { Observable } from 'rxjs';
-import { VehiculoDto } from '../dto';
+import { CrearVehiculoDto, VehiculoDto } from '../dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('vehiculo')
@@ -15,7 +15,7 @@ export class VehiculoController {
   }
 
   @Post('registrar')
-  registrarVehiculo(@Body() vehiculo: VehiculoDto): Observable<Response> {
+  registrarVehiculo(@Body() vehiculo: CrearVehiculoDto): Observable<Response> {
     this.useCase.toRegistrarVehiculo();
     return this.useCase.execute(vehiculo);
   }

@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
 import { EnvioDelegate } from '../../application/delegate';
 import { EnvioService } from '../service';
 import { Observable } from 'rxjs';
-import { EnvioDto } from '../dto';
+import { CrearEnvioDto, EnvioDto } from '../dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('envio')
@@ -15,7 +15,7 @@ export class EnvioController {
   }
 
   @Post('registrar')
-  registrarEnvio(@Body() envio: EnvioDto): Observable<Response> {
+  registrarEnvio(@Body() envio: CrearEnvioDto): Observable<Response> {
     this.useCase.toRegistrarEnvio();
     return this.useCase.execute(envio);
   }
