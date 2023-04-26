@@ -1,5 +1,5 @@
 // Librerias
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 // Servicios de dominio
 import { IUsuarioDomainService } from '../../../domain/service/';
@@ -9,6 +9,9 @@ import { IUsuarioDomain, UsuarioDomainEntity } from '../../../domain/entity/';
 
 // DTO's
 import { UsuarioDto } from '../../../domain/dto';
+
+// Validador
+import { validarUsuario } from '../../../domain/validator';
 
 /**
  * Este metodo permite Registrar un nuevo usuario en la aplicacion y almacenar sus datos en la DB
@@ -25,11 +28,19 @@ export class RegistrarUsuarioUseCase {
 
   execute(usuarioData: UsuarioDto): Observable<UsuarioDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    const dto = {
+    const dto: IUsuarioDomain = {
       ...usuarioData,
       apellidos: usuarioData.nombres.split(' ')[1],
       nombres: usuarioData.nombres.split(' ')[0],
-    } as IUsuarioDomain;
-    return this.usuarioDomainService.crear(new UsuarioDomainEntity(dto));
+    };
+    return this.usuarioDomainService.crear(this.generarEntidad(dto)).pipe(
+      tap((usuario) => {
+        validarUsuario(usuario);
+      }),
+    );
+  }
+
+  private generarEntidad(dto: IUsuarioDomain): UsuarioDomainEntity {
+    return validarUsuario(new UsuarioDomainEntity(dto));
   }
 }
