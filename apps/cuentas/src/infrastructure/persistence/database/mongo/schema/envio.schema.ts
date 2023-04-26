@@ -6,7 +6,7 @@ export class EnvioEntityMongo extends EnvioDomainEntity {
   @Prop({ required: true })
   usuarioId: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   fecha: number;
 
   @Prop({ required: true })
@@ -18,7 +18,10 @@ export class EnvioEntityMongo extends EnvioDomainEntity {
   @Prop({ required: true })
   peso: number;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
+  estimado: number;
+
+  @Prop({ required: false })
   costo: number;
 
   @Prop({ required: false })

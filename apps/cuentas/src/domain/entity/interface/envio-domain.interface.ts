@@ -5,6 +5,7 @@ export interface IEnvioDomain {
   origen: string;
   destino: string;
   peso: number;
-  costo: number;
+  estimado?: number;
+  costo?: number;
   cancelado?: boolean;
 }
