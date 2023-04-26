@@ -34,7 +34,8 @@ export function validarVehiculo(
   if (
     typeof entity.capacidad !== 'number' ||
     isNaN(entity.capacidad) ||
-    entity.capacidad < 0
+    entity.capacidad < 0 ||
+    entity.capacidad > 1000
   ) {
     throw new BadRequestException('La capacidad no es valida');
   }
