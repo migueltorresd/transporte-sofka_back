@@ -20,7 +20,7 @@ export class CrearUsuarioDto {
 
   @ApiProperty()
   @IsString()
-  contraseña: string;
+  contrasenna: string;
 
   @ApiProperty()
   @IsString()

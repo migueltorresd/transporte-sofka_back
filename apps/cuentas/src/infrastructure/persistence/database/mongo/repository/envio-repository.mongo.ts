@@ -77,7 +77,10 @@ export class EnvioRepositoryMongo implements IBase<EnvioEntityMongo> {
             estimado: data.rows[0].elements[0].duration.value,
             costo: costo,
           });
-        } else throw new BadRequestException('Error al calcular el envio');
+        } else {
+          this.borrar(envio._id).subscribe();
+          throw new BadRequestException('Error al calcular el envio');
+        }
       }),
     );
   }

@@ -7,7 +7,7 @@ export class UsuarioEntityMongo extends UsuarioDomainEntity {
   nombreUsuario: string;
 
   @Prop({ required: true })
-  contraseña: string;
+  contrasenna: string;
 
   @Prop({ required: true })
   nombres: string;
