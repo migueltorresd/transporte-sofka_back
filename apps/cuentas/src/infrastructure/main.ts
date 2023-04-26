@@ -38,7 +38,7 @@ async function bootstrap() {
       forbidUnknownValues: true,
       exceptionFactory: (errors: ValidationError[]) => {
         const newErrors = errors.filter((error) =>
-          Object.values(error.constraints).includes('should not exist'),
+          Object.keys(error.constraints).includes('whitelistValidation'),
         );
         const messages = newErrors.map(
           (error) => `${error.property} no deberia existir ${error.value}`,
