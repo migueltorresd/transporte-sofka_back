@@ -41,9 +41,9 @@ export class EnvioController {
     return this.useCase.execute();
   }
 
-  @Get('calcular-por-id')
+  /*   @Get('calcular-por-id')
   calcularPorId(@Query('id') id: string): Observable<Response> {
     this.useCase.toCalcularEnvioPorId();
     return this.useCase.execute(id);
-  }
+  } */
 }
