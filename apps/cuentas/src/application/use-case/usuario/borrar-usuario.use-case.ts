@@ -23,7 +23,6 @@ export class BorrarUsuarioUseCase {
 
   execute(usuarioId: string): Observable<UsuarioDomainEntity> {
     //TODO: VER SI ES REALMENTE NECESARIO IMPLEMENTARLO!!
-
     return;
   }
 }

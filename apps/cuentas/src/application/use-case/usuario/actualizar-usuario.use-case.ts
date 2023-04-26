@@ -28,7 +28,6 @@ export class ActualizarUsuarioUseCase {
     id: string,
     usuarioData: UsuarioDto,
   ): Observable<UsuarioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
     const dto = {
       ...usuarioData,
       apellidos: usuarioData.nombres.split(' ')[1],

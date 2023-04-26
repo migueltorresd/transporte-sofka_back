@@ -22,7 +22,6 @@ export class BuscarUsuarioPorIdUseCase {
   ) {}
 
   execute(id: string): Observable<UsuarioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
     return this.usuarioDomainService.obtenerPorId(id);
   }
 }

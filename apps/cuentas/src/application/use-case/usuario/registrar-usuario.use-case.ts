@@ -28,11 +28,10 @@ export class RegistrarUsuarioUseCase {
   ) {}
 
   execute(usuarioData: UsuarioDto): Observable<UsuarioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
     let dto: IUsuarioDomain = {
       ...usuarioData,
-      apellidos: usuarioData.nombres.split(' ')[1],
-      nombres: usuarioData.nombres.split(' ')[0],
+      apellidos: this.capitalizePrimeraLetra(usuarioData.nombres.split(' ')[1]),
+      nombres: this.capitalizePrimeraLetra(usuarioData.nombres.split(' ')[0]),
     };
     dto = this.generarPassword(dto);
     return this.usuarioDomainService.crear(this.generarEntidad(dto)).pipe(
@@ -44,6 +43,10 @@ export class RegistrarUsuarioUseCase {
 
   private generarEntidad(dto: IUsuarioDomain): UsuarioDomainEntity {
     return validarUsuario(new UsuarioDomainEntity(dto));
+  }
+
+  private capitalizePrimeraLetra(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   private generarPassword(dto: IUsuarioDomain): IUsuarioDomain {

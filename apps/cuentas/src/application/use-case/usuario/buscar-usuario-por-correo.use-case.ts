@@ -14,15 +14,14 @@ import { UsuarioDomainEntity } from '../../../domain/entity/';
  * El metodo retorna la entidad que coincida con el correo dado
  *
  * @export
- * @class BuscarUsuarioPorCorreoCase
+ * @class BuscarUsuarioPorCorreoUseCase
  */
-export class BuscarUsuarioPorCorreoCase {
+export class BuscarUsuarioPorCorreoUseCase {
   constructor(
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(usuarioId: string): Observable<UsuarioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
-    return this.usuarioDomainService.obtenerPorCorreo(usuarioId);
+  execute(correo: string): Observable<UsuarioDomainEntity> {
+    return this.usuarioDomainService.obtenerPorCorreo(correo);
   }
 }

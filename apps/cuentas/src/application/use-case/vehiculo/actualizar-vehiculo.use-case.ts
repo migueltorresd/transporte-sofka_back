@@ -27,7 +27,6 @@ export class ActualizarVehiculoUseCase {
     id: string,
     vehiculoData: VehiculoDto,
   ): Observable<VehiculoDomainEntity> {
-    //TODO: terminar de implementar caso de uso
     return this.vehiculoDomainService.actualizar(id, vehiculoData);
   }
 }

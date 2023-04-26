@@ -27,7 +27,6 @@ export class RegistrarEnvioUseCase {
   ) {}
 
   execute(envioData: EnvioDto): Observable<EnvioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
     return this.envioDomainService.crear(this.generarEntidad(envioData));
   }
 

@@ -22,7 +22,6 @@ export class BuscarEnvioPorIdUseCase {
   ) {}
 
   execute(id: string): Observable<EnvioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
     return this.envioDomainService.obtenerPorId(id);
   }
 }

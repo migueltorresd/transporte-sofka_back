@@ -29,12 +29,6 @@ export class UsuarioController {
     return this.useCase.execute(id, usuario);
   }
 
-  @Get('obtener-por-dni')
-  obtenerPorDni(@Query('dni') dni: string): Observable<Response> {
-    this.useCase.toBuscarUsuarioPorDni();
-    return this.useCase.execute(dni);
-  }
-
   @Get('obtener-por-id')
   obtenerPorId(@Query('id') id: string): Observable<Response> {
     this.useCase.toBuscarUsuarioPorId();
@@ -45,6 +39,12 @@ export class UsuarioController {
   obtenerPorCorreo(@Query('correo') correo: string): Observable<Response> {
     this.useCase.toBuscarUsuarioPorCorreo();
     return this.useCase.execute(correo);
+  }
+
+  @Get('obtener-por-dni')
+  obtenerPorDni(@Query('dni') dni: string): Observable<Response> {
+    this.useCase.toBuscarUsuarioPorDni();
+    return this.useCase.execute(dni);
   }
 
   @Get('obtener-todos')

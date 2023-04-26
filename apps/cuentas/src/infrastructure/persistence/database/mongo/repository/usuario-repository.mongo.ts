@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UsuarioEntityMongo } from '../schema/usuario.schema';
 import { IBase } from './interface/base.interface';
-import { EMPTY, Observable, concatMap, expand, from, map } from 'rxjs';
+import { EMPTY, Observable, concatMap, expand, from, map, tap } from 'rxjs';
 import { UsuarioDomainEntity } from '../../../../../domain/entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -15,7 +15,11 @@ export class UsuarioRepositoryMongo implements IBase<UsuarioEntityMongo> {
   ) {}
 
   crear(modelo: UsuarioDomainEntity): Observable<UsuarioEntityMongo> {
-    return from(this.UsuarioRepositoryMongo.create(modelo));
+    return from(this.UsuarioRepositoryMongo.create(modelo)).pipe(
+      tap((res: UsuarioEntityMongo) => {
+        if (res._id) this.generarNombredeUsuario(res._id).subscribe();
+      }),
+    );
   }
 
   actualizar(
