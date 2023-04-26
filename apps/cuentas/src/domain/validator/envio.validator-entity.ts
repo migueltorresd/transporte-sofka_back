@@ -30,7 +30,8 @@ export function validarEnvio(entity: EnvioDomainEntity): EnvioDomainEntity {
   if (
     typeof entity.peso !== 'number' ||
     isNaN(entity.peso) ||
-    entity.peso < 0
+    entity.peso < 0 ||
+    entity.peso > 1000
   ) {
     throw new BadRequestException('El peso no es valido');
   }
