@@ -2,11 +2,7 @@ import * as dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import {
-  BadRequestException,
-  ValidationError,
-  ValidationPipe,
-} from '@nestjs/common';
+import { whitelistPipe } from './exception-filter';
 
 async function bootstrap() {
   dotenv.config({ path: 'environments/.' + process.env.NODE_ENV + '.env' });
@@ -31,22 +27,7 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   });
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      forbidUnknownValues: true,
-      exceptionFactory: (errors: ValidationError[]) => {
-        const newErrors = errors.filter((error) =>
-          Object.values(error.constraints).includes('should not exist'),
-        );
-        const messages = newErrors.map(
-          (error) => `${error.property} no deberia existir ${error.value}`,
-        );
-        return new BadRequestException(messages);
-      },
-    }),
-  );
+  app.useGlobalPipes(whitelistPipe);
   await app.listen(parseInt(process.env.CUENTAS_PORT) | 3000);
 }
 bootstrap();
