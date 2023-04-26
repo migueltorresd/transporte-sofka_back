@@ -15,7 +15,7 @@ export class EnvioDto {
   destino: string;
 
   @ApiProperty()
-  @IsString()
+  @IsNumber()
   peso: number;
 
   @ApiProperty()

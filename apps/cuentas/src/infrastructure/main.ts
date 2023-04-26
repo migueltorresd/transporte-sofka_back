@@ -37,11 +37,11 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
       forbidUnknownValues: true,
       exceptionFactory: (errors: ValidationError[]) => {
-        const messages = errors.map(
-          (error) =>
-            `${error.property} tiene un valor incorrecto ${
-              error.value
-            }, ${Object.values(error.constraints).join(', ')}`,
+        const newErrors = errors.filter((error) =>
+          Object.values(error.constraints).includes('should not exist'),
+        );
+        const messages = newErrors.map(
+          (error) => `${error.property} no deberia existir ${error.value}`,
         );
         return new BadRequestException(messages);
       },
