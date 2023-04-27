@@ -1,9 +1,8 @@
-import { Body, Controller, Get, Put, Query } from '@nestjs/common';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { BoletoDelegate } from '../../application';
 import { BoletoService } from '../service';
 import { Observable } from 'rxjs';
-import { BoletoDto } from '../dto/boleto.dto';
 
 @ApiTags('boleto')
 @Controller('api/boleto')
@@ -26,12 +25,12 @@ export class BoletoController {
     return this.useCase.execute();
   }
 
-  @ApiBody({ type: BoletoDto })
+  /*   @ApiBody({ type: BoletoDto })
   @Put('actualizar-boleto')
   actualizarBoleto(
     @Body() boletoActualizar: Partial<BoletoDto>,
   ): Observable<Response> {
     this.useCase.toActualizarBoleto();
     return this.useCase.execute(boletoActualizar);
-  }
+  } */
 }
