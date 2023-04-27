@@ -35,8 +35,10 @@ export class RegistrarUsuarioUseCase {
     };
     dto = this.generarContraseña(dto);
     return this.usuarioDomainService.crear(this.generarEntidad(dto)).pipe(
-      tap((usuario) => {
-        validarUsuario(usuario);
+      tap((usuario: UsuarioDomainEntity) => {
+        if (usuario !== null) {
+          validarUsuario(usuario);
+        }
       }),
     );
   }

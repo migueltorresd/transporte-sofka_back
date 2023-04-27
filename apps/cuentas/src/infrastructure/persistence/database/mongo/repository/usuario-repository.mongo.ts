@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { UsuarioEntityMongo } from '../schema/usuario.schema';
 import { IBase } from './interface/base.interface';
 import { EMPTY, Observable, concatMap, expand, from, map } from 'rxjs';
@@ -15,9 +15,24 @@ export class UsuarioRepositoryMongo implements IBase<UsuarioEntityMongo> {
   ) {}
 
   crear(modelo: UsuarioDomainEntity): Observable<UsuarioEntityMongo> {
-    return from(this.UsuarioRepositoryMongo.create(modelo)).pipe(
-      concatMap((res: UsuarioEntityMongo) => {
-        return this.generarNombredeUsuario(res._id);
+    return from(
+      this.UsuarioRepositoryMongo.findOne({ correo: modelo.correo }),
+    ).pipe(
+      concatMap((usuario: UsuarioEntityMongo) => {
+        if (usuario === null) {
+          return this.UsuarioRepositoryMongo.create(modelo);
+        } else return 'error';
+      }),
+      concatMap((res: UsuarioEntityMongo | string) => {
+        if (res !== 'error') {
+          res = res as UsuarioEntityMongo;
+          return this.generarNombredeUsuario(res._id);
+        } else return 'error';
+      }),
+      map((res: UsuarioEntityMongo | string): UsuarioEntityMongo => {
+        if (res === null) {
+          throw new BadRequestException('Ya existe un usuario con este correo');
+        } else return res as UsuarioEntityMongo;
       }),
     );
   }
