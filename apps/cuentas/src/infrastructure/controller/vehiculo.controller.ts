@@ -3,7 +3,7 @@ import { VehiculoDelegate } from '../../application/delegate';
 import { VehiculoService } from '../service';
 import { Observable } from 'rxjs';
 import { CrearVehiculoDto, VehiculoDto } from '../dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('vehiculo')
 @Controller('api/vehiculo')
@@ -20,6 +20,7 @@ export class VehiculoController {
     return this.useCase.execute(vehiculo);
   }
 
+  @ApiBody({ type: VehiculoDto })
   @Put('actualizar-vehiculo')
   actualizarVehiculo(
     @Query('id') id: string,
