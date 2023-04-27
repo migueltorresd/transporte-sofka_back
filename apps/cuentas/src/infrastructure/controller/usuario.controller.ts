@@ -3,7 +3,7 @@ import { UsuarioDelegate } from '../../application/delegate';
 import { UsuarioService } from '../service';
 import { Observable } from 'rxjs';
 import { CrearUsuarioDto, CredencialesDto, UsuarioDto } from '../dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('usuario')
 @Controller('api/usuario')
@@ -20,6 +20,7 @@ export class UsuarioController {
     return this.useCase.execute(usuario);
   }
 
+  @ApiBody({ type: UsuarioDto })
   @Put('actualizar-usuario')
   actualizarUsuario(
     @Query('id') id: string,

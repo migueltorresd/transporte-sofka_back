@@ -41,21 +41,11 @@ export class ActualizarUsuarioUseCase {
         nombres: this.capitalizePrimeraLetra(usuarioData.nombres.split(' ')[0]),
       };
       if (dto.contrasenna) dto = this.generarContraseña(dto);
-      return this.usuarioDomainService.actualizar(id, dto).pipe(
-        tap((usuario) => {
-          validarUsuario(usuario);
-        }),
-      );
+      return this.usuarioDomainService.actualizar(id, dto);
     } else {
       let dto = usuarioData;
       if (dto.contrasenna) dto = this.generarContraseña(dto as IUsuarioDomain);
-      return this.usuarioDomainService
-        .actualizar(id, dto as IUsuarioDomain)
-        .pipe(
-          tap((usuario) => {
-            validarUsuario(usuario);
-          }),
-        );
+      return this.usuarioDomainService.actualizar(id, dto as IUsuarioDomain);
     }
   }
 

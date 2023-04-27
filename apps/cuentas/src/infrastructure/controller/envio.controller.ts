@@ -3,7 +3,7 @@ import { EnvioDelegate } from '../../application/delegate';
 import { EnvioService } from '../service';
 import { Observable } from 'rxjs';
 import { CrearEnvioDto, EnvioDto } from '../dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('envio')
 @Controller('api/envio')
@@ -20,6 +20,7 @@ export class EnvioController {
     return this.useCase.execute(envio);
   }
 
+  @ApiBody({ type: EnvioDto })
   @Put('actualizar-envio')
   actualizarEnvio(
     @Query('id') id: string,
