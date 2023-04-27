@@ -1,5 +1,5 @@
-import { Body, Controller, Post, Put } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, Put, Query } from '@nestjs/common';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { BoletoDelegate } from '../../application';
 import { BoletoService } from '../service';
 import { Observable } from 'rxjs';
@@ -14,12 +14,19 @@ export class BoletoController {
     this.useCase = new BoletoDelegate(boletoService);
   }
 
-  @Post('registrar')
-  registrarBoleto(@Body() boleto: BoletoDto): Observable<Response> {
-    this.useCase.toRegistrarBoleto();
-    return this.useCase.execute(boleto);
+  @Get('obtener-por-id')
+  obtenerPorId(@Query('id') id: string): Observable<Response> {
+    this.useCase.toBuscarBoletoPorId();
+    return this.useCase.execute(id);
   }
 
+  @Get('obtener-todos')
+  obtenerTodos(): Observable<Response> {
+    this.useCase.toBuscarBoletos();
+    return this.useCase.execute();
+  }
+
+  @ApiBody({ type: BoletoDto })
   @Put('actualizar-boleto')
   actualizarBoleto(
     @Body() boletoActualizar: Partial<BoletoDto>,

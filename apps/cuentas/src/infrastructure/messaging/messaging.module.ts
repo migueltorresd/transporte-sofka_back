@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { CrearBoletoPublisher } from './publisher/crear-boleto.publisher';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ]),
   ],
   controllers: [],
-  providers: [],
-  exports: [],
+  providers: [CrearBoletoPublisher],
+  exports: [CrearBoletoPublisher],
 })
 export class MessagingModule {}

@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
 import { BoletoService } from '../../service';
 import { BoletoDomainEntity } from '../../../domain/entity';
 import { IEnvioDomain } from '../../../domain/interface';
@@ -9,16 +9,11 @@ export class BoletoSuscriberController {
   constructor(private readonly boletoService: BoletoService) {}
 
   @EventPattern('boleto_service.envio_confirmado')
-  createdDeposit(@Payload() data: string, @Ctx() context: RmqContext) {
-    this.crearBoletoConEnvio(data, context);
+  createdDeposit(@Payload() data: string) {
+    this.crearBoletoConEnvio(data);
   }
 
-  private crearBoletoConEnvio(data: string, context: RmqContext): void {
-    console.log('--------------------------------------');
-    console.log('Data: ', data);
-    console.log('--------------------------------------');
-    console.log('Context: ', context);
-    console.log('--------------------------------------');
+  private crearBoletoConEnvio(data: string): void {
     const envio: IEnvioDomain = JSON.parse(data);
     const boleto = new BoletoDomainEntity({
       envioId: envio._id,
