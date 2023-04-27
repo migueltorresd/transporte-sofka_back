@@ -4,14 +4,18 @@ import { EnvioService } from '../service';
 import { Observable } from 'rxjs';
 import { CrearEnvioDto, EnvioDto } from '../dto';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { CrearBoletoPublisher } from '../messaging/publisher/crear-boleto.publisher';
 
 @ApiTags('envio')
 @Controller('api/envio')
 export class EnvioController {
   private readonly useCase: EnvioDelegate;
 
-  constructor(private readonly envioService: EnvioService) {
-    this.useCase = new EnvioDelegate(envioService);
+  constructor(
+    private readonly envioService: EnvioService,
+    private readonly crearBoletoPublisher: CrearBoletoPublisher,
+  ) {
+    this.useCase = new EnvioDelegate(envioService, crearBoletoPublisher);
   }
 
   @Post('registrar')
@@ -42,9 +46,9 @@ export class EnvioController {
     return this.useCase.execute();
   }
 
-  /*   @Get('calcular-por-id')
-  calcularPorId(@Query('id') id: string): Observable<Response> {
-    this.useCase.toCalcularEnvioPorId();
+  @Get('confirmar-por-id')
+  confirmarPorId(@Query('id') id: string): Observable<Response> {
+    this.useCase.toConfirmarEnvioPorId();
     return this.useCase.execute(id);
-  } */
+  }
 }

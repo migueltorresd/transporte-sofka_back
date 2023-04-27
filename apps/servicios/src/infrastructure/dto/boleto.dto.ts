@@ -1,4 +1,4 @@
-import { IsString, IsDate, IsBoolean } from 'class-validator';
+import { IsString, IsBoolean, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class BoletoDto {
@@ -19,8 +19,8 @@ export class BoletoDto {
   vehiculoId: string;
 
   @ApiProperty()
-  @IsDate()
-  fecha: Date;
+  @IsNumber()
+  fecha: number;
 
   @ApiProperty()
   @IsBoolean()

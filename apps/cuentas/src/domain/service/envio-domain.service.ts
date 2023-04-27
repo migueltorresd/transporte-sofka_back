@@ -7,4 +7,5 @@ export interface IEnvioDomainService<T> {
   obtenerTodos(): Observable<T[]>;
   obtenerPorId(id: string): Observable<T>;
   calcularPorId(id: string): Observable<T>;
+  confirmarPorId(id: string): Observable<T>;
 }

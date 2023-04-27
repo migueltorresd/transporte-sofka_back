@@ -98,4 +98,14 @@ export class EnvioRepositoryMongo implements IBase<EnvioEntityMongo> {
     const costo = recargos * 2;
     return costo;
   }
+
+  confirmarPorId(id: string): Observable<EnvioEntityMongo> {
+    return from(
+      this.EnvioRepositoryMongo.findOneAndUpdate(
+        { _id: id },
+        { cancelado: false },
+        { new: true },
+      ).exec(),
+    );
+  }
 }

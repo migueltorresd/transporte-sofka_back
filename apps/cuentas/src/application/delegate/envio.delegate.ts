@@ -14,7 +14,9 @@ import {
   ActualizarEnvioUseCase,
   RegistrarEnvioUseCase,
   CalcularEnvioPorIdUseCase,
+  ConfirmarEnvioPorIdUseCase,
 } from '../use-case/envio';
+import { CrearBoletoPublisherPublisherBase } from '../../domain/messaging/publisher/payment-created.publisher.base';
 
 /**
  * EnvioDelegate hace una implementacion de la interface IUseCase
@@ -35,6 +37,7 @@ export class EnvioDelegate implements IUseCase {
    */
   constructor(
     private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
+    private readonly confirmarEnvioEvento: CrearBoletoPublisherPublisherBase<EnvioDomainEntity>,
   ) {}
 
   /**
@@ -92,5 +95,17 @@ export class EnvioDelegate implements IUseCase {
    */
   toCalcularEnvioPorId(): void {
     this.delegate = new CalcularEnvioPorIdUseCase(this.envioDomainService);
+  }
+
+  /**
+   * Metodo que realiza la ejecucion del caso de uso BuscarEnvioPorId
+   *
+   * @memberof EnvioDelegate
+   */
+  toConfirmarEnvioPorId(): void {
+    this.delegate = new ConfirmarEnvioPorIdUseCase(
+      this.envioDomainService,
+      this.confirmarEnvioEvento,
+    );
   }
 }

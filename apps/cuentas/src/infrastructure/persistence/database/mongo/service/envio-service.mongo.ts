@@ -32,4 +32,8 @@ export class EnvioServiceMongo
   calcularPorId(id: string): Observable<EnvioEntityMongo> {
     return this.repository.calcularPorId(id);
   }
+
+  confirmarPorId(id: string): Observable<EnvioEntityMongo> {
+    return this.repository.confirmarPorId(id);
+  }
 }
