@@ -60,12 +60,12 @@ export class UsuarioRepositoryMongo implements IBase<UsuarioEntityMongo> {
 
   loginUsuario(
     correo: string,
-    contraseña: string,
+    contrasenna: string,
   ): Observable<UsuarioEntityMongo> {
     return from(
       this.UsuarioRepositoryMongo.findOne({
         correo: correo,
-        contraseña: contraseña,
+        contrasenna: contrasenna,
       }).exec(),
     );
   }
