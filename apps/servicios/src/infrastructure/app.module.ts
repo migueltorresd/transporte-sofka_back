@@ -7,5 +7,6 @@ import { Services } from './service';
   imports: [MongoModule],
   controllers: [...Controllers],
   providers: [...Services],
+  exports: [...Services],
 })
 export class AppModule {}

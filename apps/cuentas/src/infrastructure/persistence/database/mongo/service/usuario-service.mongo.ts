@@ -41,8 +41,8 @@ export class UsuarioServiceMongo
     return this.repository.obtenerPorDni(dni);
   }
 
-  loginUsuario(correo: string, contraseña: string): Observable<string> {
-    return from(this.repository.loginUsuario(correo, contraseña)).pipe(
+  loginUsuario(correo: string, contrasenna: string): Observable<string> {
+    return from(this.repository.loginUsuario(correo, contrasenna)).pipe(
       map((usuario: UsuarioEntityMongo) => {
         return this.jwtService.sign({ data: usuario });
       }),

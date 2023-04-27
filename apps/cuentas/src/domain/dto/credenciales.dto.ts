@@ -8,5 +8,5 @@ export class CredencialesDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  contraseña: string;
+  contrasenna: string;
 }

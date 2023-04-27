@@ -1,5 +1,5 @@
 // Librerias
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import * as crypto from 'crypto';
 
 // Servicios de dominio
@@ -10,9 +10,6 @@ import { IUsuarioDomain, UsuarioDomainEntity } from '../../../domain/entity/';
 
 // DTO's
 import { UsuarioDto } from '../../../domain/dto';
-
-// Validador
-import { validarUsuario } from '../../../domain/validator';
 
 /**
  * Este metodo permite modificar la informacion del usuario con el ID dado, almacenada en la DB

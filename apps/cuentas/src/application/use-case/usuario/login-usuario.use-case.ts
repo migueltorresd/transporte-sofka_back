@@ -22,17 +22,17 @@ export class LoginUsuarioUseCase {
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(correo: string, contraseña: string): Observable<string> {
+  execute(correo: string, contrasenna: string): Observable<string> {
     return this.usuarioDomainService.loginUsuario(
       correo,
-      this.generarPassword(contraseña),
+      this.generarPassword(contrasenna),
     );
   }
 
-  private generarPassword(contraseña: string): string {
+  private generarPassword(contrasenna: string): string {
     const hash = crypto
       .createHmac('sha256', process.env.SECRET_KEY)
-      .update(contraseña)
+      .update(contrasenna)
       .digest('hex');
     return hash;
   }
