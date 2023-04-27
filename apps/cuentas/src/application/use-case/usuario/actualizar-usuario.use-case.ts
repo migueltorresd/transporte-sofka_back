@@ -1,5 +1,6 @@
 // Librerias
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import * as crypto from 'crypto';
 
 // Servicios de dominio
 import { IUsuarioDomainService } from '../../../domain/service/';
@@ -9,6 +10,9 @@ import { IUsuarioDomain, UsuarioDomainEntity } from '../../../domain/entity/';
 
 // DTO's
 import { UsuarioDto } from '../../../domain/dto';
+
+// Validador
+import { validarUsuario } from '../../../domain/validator';
 
 /**
  * Este metodo permite modificar la informacion del usuario con el ID dado, almacenada en la DB
@@ -28,11 +32,42 @@ export class ActualizarUsuarioUseCase {
     id: string,
     usuarioData: UsuarioDto,
   ): Observable<UsuarioDomainEntity> {
-    const dto = {
-      ...usuarioData,
-      apellidos: usuarioData.nombres.split(' ')[1],
-      nombres: usuarioData.nombres.split(' ')[0],
-    } as IUsuarioDomain;
-    return this.usuarioDomainService.actualizar(id, dto);
+    if (usuarioData.nombres) {
+      let dto: IUsuarioDomain = {
+        ...usuarioData,
+        apellidos: this.capitalizePrimeraLetra(
+          usuarioData.nombres.split(' ')[1],
+        ),
+        nombres: this.capitalizePrimeraLetra(usuarioData.nombres.split(' ')[0]),
+      };
+      if (dto.contrasenna) dto = this.generarContraseña(dto);
+      return this.usuarioDomainService.actualizar(id, dto).pipe(
+        tap((usuario) => {
+          validarUsuario(usuario);
+        }),
+      );
+    } else {
+      let dto = usuarioData;
+      if (dto.contrasenna) dto = this.generarContraseña(dto as IUsuarioDomain);
+      return this.usuarioDomainService
+        .actualizar(id, dto as IUsuarioDomain)
+        .pipe(
+          tap((usuario) => {
+            validarUsuario(usuario);
+          }),
+        );
+    }
+  }
+
+  private capitalizePrimeraLetra(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  private generarContraseña(dto: IUsuarioDomain): IUsuarioDomain {
+    dto.contrasenna = crypto
+      .createHmac('sha256', process.env.SECRET_KEY)
+      .update(dto.contrasenna)
+      .digest('hex');
+    return dto;
   }
 }
