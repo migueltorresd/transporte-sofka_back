@@ -7,7 +7,6 @@ import { IUsuarioDomainService } from '../../../domain/service';
 // Entidades
 import { UsuarioDomainEntity } from '../../../domain/entity';
 
-
 /**
  * Este metodo permite recuperar el listado general de usuarios almacenados en la DB
  * Retorna todos los usuarios almacenados, en caso de no haber usuarios registrados devuelve un error tipo "not found"
@@ -18,11 +17,10 @@ import { UsuarioDomainEntity } from '../../../domain/entity';
  */
 export class BuscarUsuariosUseCase {
   constructor(
-    private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity[]>,
+    private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(usuarioId: string): Observable<UsuarioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
-    return;
+  execute(): Observable<UsuarioDomainEntity[]> {
+    return this.usuarioDomainService.obtenerTodos();
   }
 }

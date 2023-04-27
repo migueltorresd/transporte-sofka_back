@@ -1,13 +1,12 @@
 // Librerias
 import { Observable } from 'rxjs';
+import * as crypto from 'crypto';
 
 // Servicios de dominio
 import { IUsuarioDomainService } from '../../../domain/service';
 
 // Entidades
 import { UsuarioDomainEntity } from '../../../domain/entity';
-
-
 
 /**
  * Este metodo permite al usuario que presente las credenciales correctas, acceder a su cuenta en la aplicacion
@@ -23,8 +22,18 @@ export class LoginUsuarioUseCase {
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(correo: string, password: string ): Observable<UsuarioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
-    return;
+  execute(correo: string, contrasenna: string): Observable<string> {
+    return this.usuarioDomainService.loginUsuario(
+      correo,
+      this.generarPassword(contrasenna),
+    );
+  }
+
+  private generarPassword(contrasenna: string): string {
+    const hash = crypto
+      .createHmac('sha256', process.env.SECRET_KEY)
+      .update(contrasenna)
+      .digest('hex');
+    return hash;
   }
 }

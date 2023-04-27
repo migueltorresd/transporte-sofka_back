@@ -7,7 +7,6 @@ import { IUsuarioDomainService } from '../../../domain/service/';
 // Entidades
 import { UsuarioDomainEntity } from '../../../domain/entity/';
 
-
 /**
  * Este metodo permite realizar la busqueda de un usuario mediante ID unico
  * Recibe como parametro un dato tipo string con id de usuario
@@ -22,8 +21,7 @@ export class BuscarUsuarioPorIdUseCase {
     private readonly usuarioDomainService: IUsuarioDomainService<UsuarioDomainEntity>,
   ) {}
 
-  execute(): Observable<UsuarioDomainEntity[]> {
-    //TODO: terminar de implementar caso de uso
-    return;
+  execute(id: string): Observable<UsuarioDomainEntity> {
+    return this.usuarioDomainService.obtenerPorId(id);
   }
 }

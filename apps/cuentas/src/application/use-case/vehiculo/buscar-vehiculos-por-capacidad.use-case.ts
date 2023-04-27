@@ -21,8 +21,7 @@ export class BuscarVehiculosPorCapacidadUseCase {
     private readonly vehiculosDomainService: IVehiculoDomainService<VehiculoDomainEntity>,
   ) {}
 
-  execute(): Observable<VehiculoDomainEntity[]> {
-    //TODO: terminar de implementar caso de uso
-    return;
+  execute(capacidad: number): Observable<VehiculoDomainEntity[]> {
+    return this.vehiculosDomainService.obtenerPorCapacidad(capacidad);
   }
 }

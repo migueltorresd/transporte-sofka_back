@@ -5,13 +5,14 @@ import { Types } from 'mongoose';
 import { IBoletoDomain } from '../interface/boleto-domain.interface';
 
 export class BoletoDomainEntity implements IBoletoDomain {
+  _id?: string;
   id?: string;
   envioId: string;
   usuarioId: string;
-  conductorId: string;
-  vehiculoId: string;
-  fecha?: Date;
-  completado?: boolean;
+  conductorId?: string;
+  vehiculoId?: string;
+  fecha: number;
+  completado: boolean;
 
   constructor(data: IBoletoDomain) {
     if (data.id) this.id = data.id;
@@ -26,7 +27,7 @@ export class BoletoDomainEntity implements IBoletoDomain {
     if (data.vehiculoId) this.vehiculoId = data.vehiculoId;
 
     if (data.fecha) this.fecha = data.fecha;
-    else this.fecha = new Date();
+    else this.fecha = Date.now();
 
     if (data.completado) this.completado = data.completado;
     else this.completado = false;

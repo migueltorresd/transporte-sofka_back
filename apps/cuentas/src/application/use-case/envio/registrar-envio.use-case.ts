@@ -2,10 +2,16 @@
 import { Observable } from 'rxjs';
 
 // Servicios de dominio
-import { IEnvioDomain } from '../../../domain/service';
+import { IEnvioDomainService } from '../../../domain/service';
 
 // Entidades
-import { EnvioDomainEntity } from '../../../domain/entity';
+import { EnvioDomainEntity, IEnvioDomain } from '../../../domain/entity';
+
+// DTO's
+import { EnvioDto } from '../../../domain/dto';
+
+// Validador
+import { validarEnvio } from '../../../domain/validator';
 
 /**
  * Este metodo permite Registrar un nuevo envio y almacenar sus datos en la DB
@@ -17,11 +23,14 @@ import { EnvioDomainEntity } from '../../../domain/entity';
  */
 export class RegistrarEnvioUseCase {
   constructor(
-    private readonly envioDomainService: IEnvioDomain<EnvioDomainEntity>,
+    private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
   ) {}
 
-  execute(envioData: EnvioDomainEntity): Observable<EnvioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
-    return;
+  execute(envioData: EnvioDto): Observable<EnvioDomainEntity> {
+    return this.envioDomainService.crear(this.generarEntidad(envioData));
+  }
+
+  private generarEntidad(dto: IEnvioDomain): EnvioDomainEntity {
+    return validarEnvio(new EnvioDomainEntity(dto));
   }
 }

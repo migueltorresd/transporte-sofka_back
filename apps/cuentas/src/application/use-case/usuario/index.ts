@@ -6,3 +6,4 @@ export * from './buscar-usuario-por-id.use-case';
 export * from './buscar-usuarios.use-case';
 export * from './login-usuario.use-case';
 export * from './registrar-usuario.use-case';
+export * from './generar-nombredeusuario-usuario.use-case';

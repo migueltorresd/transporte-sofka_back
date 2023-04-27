@@ -3,17 +3,19 @@ import { Types } from 'mongoose';
 
 // Interfaces
 import { IUsuarioDomain } from './interface/usuario-domain.interface';
+import { RolTypes } from './interface/enums';
 
 export class UsuarioDomainEntity implements IUsuarioDomain {
   id?: string;
+  _id?: string;
   nombreUsuario?: string;
-  password: string;
+  contrasenna: string;
   nombres: string;
   apellidos: string;
-  dni?: string;
+  dni: string;
   correo: string;
-  telefono?: string;
-  esConductor: boolean;
+  telefono: string;
+  rol: number;
 
   constructor(data: IUsuarioDomain) {
     if (data.id) this.id = data.id;
@@ -21,7 +23,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
 
     if (data.nombreUsuario) this.nombreUsuario = data.nombreUsuario;
 
-    if (data.password) this.password = data.password;
+    if (data.contrasenna) this.contrasenna = data.contrasenna;
 
     if (data.nombres) this.nombres = data.nombres;
 
@@ -33,7 +35,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
 
     if (data.telefono) this.telefono = data.telefono;
 
-    if (data.esConductor) this.esConductor = data.esConductor;
-    else this.esConductor = false;
+    if (data.rol) this.rol = data.rol;
+    if (!this.rol) this.rol = RolTypes.USUARIO;
   }
 }

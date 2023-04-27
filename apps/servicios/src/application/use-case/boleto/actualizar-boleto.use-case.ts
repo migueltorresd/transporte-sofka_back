@@ -22,9 +22,9 @@ export class ActualizarBoletoUseCase {
 
   execute(
     boletoId: string,
-    boletoData: Boleto,
+    boletoData: BoletoDomainEntity,
   ): Observable<BoletoDomainEntity> {
     //TODO: terminar de implementar caso de uso
-    return;
+    return this.boletoDomainService.actualizar(boletoId, boletoData);
   }
 }

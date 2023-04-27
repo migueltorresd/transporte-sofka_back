@@ -13,7 +13,7 @@ export class VehiculoDomainEntity implements IVehiculoDomain {
   placa: string;
   color: string;
   capacidad: number;
-  disponible: boolean;
+  disponible?: boolean;
 
   constructor(data: IVehiculoDomain) {
     if (data.id) this.id = data.id;
@@ -33,6 +33,6 @@ export class VehiculoDomainEntity implements IVehiculoDomain {
 
     if (data.capacidad) this.capacidad = data.capacidad;
 
-    if (data.disponible) this.disponible = data.disponible;
+    this.disponible = data.disponible != undefined ? data.disponible : true;
   }
 }

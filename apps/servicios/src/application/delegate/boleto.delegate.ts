@@ -8,7 +8,12 @@ import { IUseCase } from './interface';
 import { IBoletoDomainService, BoletoDomainEntity } from '../../domain/';
 
 // Casos de Uso
-import { ActualizarBoletoUseCase, RegistrarBoletoUseCase } from '../use-case';
+import {
+  ActualizarBoletoUseCase,
+  BuscarBoletoPorIdUseCase,
+  BuscarBoletosUseCase,
+  RegistrarBoletoUseCase,
+} from '../use-case';
 
 /**
  * BoletoDelegate hace una implementacion de la interface IUseCase
@@ -21,7 +26,6 @@ import { ActualizarBoletoUseCase, RegistrarBoletoUseCase } from '../use-case';
  */
 export class BoletoDelegate implements IUseCase {
   private delegate: IUseCase;
-
 
   /**
    * Creates an instance of BoletoDelegate.
@@ -57,7 +61,25 @@ export class BoletoDelegate implements IUseCase {
    *
    * @memberof VehiculoDelegate
    */
-  toActualizarEnvio(): void {
+  toActualizarBoleto(): void {
     this.delegate = new ActualizarBoletoUseCase(this.boletoDomainService);
+  }
+
+  /**
+   * Metodo que realiza la ejecucion del caso de uso BuscarBoletoPorId
+   *
+   * @memberof BoletoDelegate
+   */
+  toBuscarBoletoPorId(): void {
+    this.delegate = new BuscarBoletoPorIdUseCase(this.boletoDomainService);
+  }
+
+  /**
+   * Metodo que realiza la ejecucion del caso de uso BuscarBoletos
+   *
+   * @memberof BoletoDelegate
+   */
+  toBuscarBoletos(): void {
+    this.delegate = new BuscarBoletosUseCase(this.boletoDomainService);
   }
 }

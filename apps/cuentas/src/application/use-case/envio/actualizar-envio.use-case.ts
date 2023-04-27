@@ -2,10 +2,13 @@
 import { Observable } from 'rxjs';
 
 // Servicios de dominio
-import { IEnvioDomain } from '../../../domain/service';
+import { IEnvioDomainService } from '../../../domain/service';
 
 // Entidades
 import { EnvioDomainEntity } from '../../../domain/entity';
+
+// DTO's
+import { EnvioDto } from '../../../domain/dto';
 
 /**
  * Este metodo permite Actualizar un envio
@@ -17,11 +20,10 @@ import { EnvioDomainEntity } from '../../../domain/entity';
  */
 export class ActualizarEnvioUseCase {
   constructor(
-    private readonly envioDomainService: IEnvioDomain<EnvioDomainEntity>,
+    private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
   ) {}
 
-  execute(envioData: EnvioDomainEntity): Observable<EnvioDomainEntity> {
-    //TODO: terminar de implementar caso de uso
-    return;
+  execute(id: string, envioData: EnvioDto): Observable<EnvioDomainEntity> {
+    return this.envioDomainService.actualizar(id, envioData);
   }
 }

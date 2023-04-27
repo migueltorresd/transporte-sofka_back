@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs';
 
 // Entidades - Entidad
-import { IEnvioDomain, EnvioDomainEntity } from '../../domain';
+import { EnvioDomainEntity, IEnvioDomainService } from '../../domain';
 
 // Interfaces
 import { IUseCase } from './interface';
@@ -13,7 +13,10 @@ import {
   BuscarEnviosUseCase,
   ActualizarEnvioUseCase,
   RegistrarEnvioUseCase,
+  CalcularEnvioPorIdUseCase,
+  ConfirmarEnvioPorIdUseCase,
 } from '../use-case/envio';
+import { CrearBoletoPublisherPublisherBase } from '../../domain/messaging/publisher/payment-created.publisher.base';
 
 /**
  * EnvioDelegate hace una implementacion de la interface IUseCase
@@ -29,11 +32,12 @@ export class EnvioDelegate implements IUseCase {
 
   /**
    * Creates an instance of EnvioDelegate.
-   * @param {IEnvioDomain<EnvioDomainEntity>} envioDomainService
+   * @param {IEnvioDomainService<EnvioDomainEntity>} envioDomainService
    * @memberof EnvioDelegate
    */
   constructor(
-    private readonly envioDomainService: IEnvioDomain<EnvioDomainEntity>,
+    private readonly envioDomainService: IEnvioDomainService<EnvioDomainEntity>,
+    private readonly confirmarEnvioEvento: CrearBoletoPublisherPublisherBase<EnvioDomainEntity>,
   ) {}
 
   /**
@@ -82,5 +86,26 @@ export class EnvioDelegate implements IUseCase {
    */
   toBuscarEnvios(): void {
     this.delegate = new BuscarEnviosUseCase(this.envioDomainService);
+  }
+
+  /**
+   * Metodo que realiza la ejecucion del caso de uso BuscarEnvioPorId
+   *
+   * @memberof EnvioDelegate
+   */
+  toCalcularEnvioPorId(): void {
+    this.delegate = new CalcularEnvioPorIdUseCase(this.envioDomainService);
+  }
+
+  /**
+   * Metodo que realiza la ejecucion del caso de uso BuscarEnvioPorId
+   *
+   * @memberof EnvioDelegate
+   */
+  toConfirmarEnvioPorId(): void {
+    this.delegate = new ConfirmarEnvioPorIdUseCase(
+      this.envioDomainService,
+      this.confirmarEnvioEvento,
+    );
   }
 }

@@ -8,12 +8,13 @@
     "tsConfigPath": "apps/cuentas/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/cuentas/infrastructure",
+  "root": "apps/cuentas",
+  "entryFile": "infrastructure/main",
   "projects": {
     "cuentas": {
       "type": "application",
-      "root": "apps/cuentas/infrastructure",
-      "entryFile": "main",
+      "root": "apps/cuentas",
+      "entryFile": "infrastructure/main",
       "sourceRoot": "apps/cuentas/src",
       "compilerOptions": {
         "tsConfigPath": "apps/cuentas/tsconfig.app.json"
@@ -21,8 +22,8 @@
     },
     "servicios": {
       "type": "application",
-      "root": "apps/servicios/infrastructure",
-      "entryFile": "main",
+      "root": "apps/servicios",
+      "entryFile": "infrastructure/main",
       "sourceRoot": "apps/servicios/src",
       "compilerOptions": {
         "tsConfigPath": "apps/servicios/tsconfig.app.json"

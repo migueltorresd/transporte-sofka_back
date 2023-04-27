@@ -5,7 +5,13 @@ import { Observable } from 'rxjs';
 import { IVehiculoDomainService } from '../../../domain/service';
 
 // Entidades
-import { VehiculoDomainEntity } from '../../../domain/entity';
+import { IVehiculoDomain, VehiculoDomainEntity } from '../../../domain/entity';
+
+// DTO's
+import { VehiculoDto } from '../../../domain/dto';
+
+// Validador
+import { validarVehiculo } from '../../../domain/validator';
 
 /**
  * Este metodo permite Registrar un nuevo vehiculo y almacenar sus datos en la DB
@@ -20,10 +26,11 @@ export class RegistrarVehiculoUseCase {
     private readonly vehiculoDomainService: IVehiculoDomainService<VehiculoDomainEntity>,
   ) {}
 
-  execute(
-    vehiculoData: VehiculoDomainEntity,
-  ): Observable<VehiculoDomainEntity> {
-    //TODO: terminar de implementar caso de uso
-    return;
+  execute(vehiculoData: VehiculoDto): Observable<VehiculoDomainEntity> {
+    return this.vehiculoDomainService.crear(this.generarEntidad(vehiculoData));
+  }
+
+  private generarEntidad(dto: IVehiculoDomain): VehiculoDomainEntity {
+    return validarVehiculo(new VehiculoDomainEntity(dto));
   }
 }
